@@ -32,6 +32,12 @@
   --primary-30: rgba(175, 180, 43, 0.3);
   --primary-weak: #c0ca33;
   --primary-weak-50: rgba(192, 202, 51, 0.5);
+  --primary: #9fa7bd;
+  --primary-70: rgba(159, 167, 189, 0.7);
+  --primary-50: rgba(159, 167, 189, 0.5);
+  --primary-30: rgba(159, 167, 189, 0.3);
+  --primary-weak: #9fa7bd;
+  --primary-weak-50: rgba(159, 167, 189, 0.5);
   --body-color: #5d5d5e;
   --body-color-5: rgba(93, 93, 94, 0.05);
   --body-bg-color: #00151f;
@@ -79,6 +85,12 @@
   --primary-30: rgba(175, 180, 43, 0.3);
   --primary-weak: #c0ca33;
   --primary-weak-50: rgba(192, 202, 51, 0.5);
+  --primary: #9fa7bd;
+  --primary-70: rgba(159, 167, 189, 0.7);
+  --primary-50: rgba(159, 167, 189, 0.5);
+  --primary-30: rgba(159, 167, 189, 0.3);
+  --primary-weak: #9fa7bd;
+  --primary-weak-50: rgba(159, 167, 189, 0.5);
   --body-color: #d1d9e9b3;
   --body-color-5: rgba(209, 217, 233, 0.05);
   --body-bg-color: #00151f;
@@ -3725,4 +3737,24 @@ pre .coffeescript .title {
 .trm-fixed-container.offset #trm-back-top {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+:root {
+  --primary: #003060;
+  --primary-70: rgba(0, 48, 96, 0.7);
+  --primary-50: rgba(0, 48, 96, 0.5);
+  --primary-30: rgba(0, 48, 96, 0.3);
+  --primary-weak: #0c457e;
+  --primary-weak-50: rgba(12, 69, 126, 0.5);
+  /* 白天模式：你原本設定的半透明白 */
+  --footer-bg: rgba(255, 255, 255, 0.495);
+}
+:root.dark {
+  --primary: #9fa7bd;
+  --primary-70: rgba(159, 167, 189, 0.7);
+  --primary-50: rgba(159, 167, 189, 0.5);
+  --primary-30: rgba(159, 167, 189, 0.3);
+  --primary-weak: #9fa7bd;
+  --primary-weak-50: rgba(159, 167, 189, 0.5);
+  /* 暗黑模式：換成半透明黑，數值可依喜好微調 */
+  --footer-bg: rgba(14, 37, 55, 0.8);
 }
