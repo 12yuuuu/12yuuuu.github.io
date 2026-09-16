@@ -1,527 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="x5-fullscreen" content="true">
-<meta name="full-screen" content="yes">
-<meta name="theme-color" content="#317EFB" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Anarcadia">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Anarcadia">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Ana Liu">
-<meta property="article:tag" content="Ana">
-<meta name="twitter:card" content="summary">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ana Liu &middot; Efficient Machine Learning Systems and Hardware</title>
+  <meta name="description" content="Ana Liu is an Electrical &amp; Computer Engineering master's student at the University of Toronto, working on efficient and reliable machine learning systems and the hardware they run on.">
 
-    <meta name="keywords" content="Ana">
+  <!-- Web fonts. Newsreader (serif) is used for headings, Inter for everything else. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
 
+  <link rel="stylesheet" href="css/style.css">
 
-<title >Anarcadia</title>
-
-<!-- Favicon -->
-
-    <link href='/img/favicon.png?v=2.2.7' rel='icon' type='image/png' sizes='16x16' ></link>
-
-
-    <link href='/img/favicon.png?v=2.2.7' rel='icon' type='image/png' sizes='32x32' ></link>
-
-
-
-
-<!-- Plugin -->
-
-
-
-
-    
-<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
-
-    
-<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
-
-    
-    
-
-
-
-
-<!-- Icon -->
-
-    
-<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
-
-
-
-
-<!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Ana Liu","root":"/","typed_text":["かみさま"],"theme_version":"2.2.7","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":null,"icon16":"/img/favicon.png","icon32":"/img/favicon.png","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/img/favicon_hide.png","show_text":"","hide_text":"404 ^ >𖥦< ^ ੭"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","sticky":"TOP","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"The blog has been lovely to run undefined day"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":true,"postUpdate":"2026-03-09 23:49:28"};</script>
-
-<!-- Theme mode css -->
-<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.7" id="trm-switch-style">
-<script>
-    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
-    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
-    let type = catchMode === 'style-dark' ? 'add' : 'remove';
-    document.documentElement.classList[type]('dark')
-</script>
-
-<!-- CDN -->
-
-
-    
-    
-
-
-
-<!-- Site Analytics -->
-
- 
-<meta name="generator" content="Hexo 8.1.1"></head>
-
+  <!-- Marks the page as JavaScript-enabled before anything is painted, so
+       the scroll-reveal rules in style.css only apply when main.js can
+       actually undo them. Without JS the content stays plainly visible. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
 <body>
 
-  <!-- app wrapper -->
-  <div class="trm-app-frame">
+  <!-- ============================================================
+       SITE HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-name" href="#top">Ana Liu</a>
 
-    <!-- page preloader -->
-    <div class="trm-preloader">
-    <div class="trm-holder">
-        <div class="preloader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-</div>
-    <!-- page preloader end -->
+      <!-- Only shown on small screens (see CSS). Controlled by js/main.js -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
 
-    <!-- change mode preloader -->
-    <div class="trm-mode-swich-animation-frame">
-    <div class="trm-mode-swich-animation">
-        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
-        <div class="trm-horizon"></div>
-        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
-    </div>
-</div>
-    <!-- change mode preloader end -->
-
-      <!-- scroll container -->
-      <div id="trm-dynamic-content" class="trm-swup-animation">
-        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
-            <!-- top bar -->
-            <header class="trm-top-bar">
-	<div class="container">
-		<div class="trm-left-side">
-			<!-- logo -->
-<a href="/" class="trm-logo-frame trm-anima-link">
-    
-    
-</a>
-<!-- logo end -->
-		</div>
-		<div class="trm-right-side">
-			<!-- menu -->
-<div class="trm-menu">
-    <nav>
-        <ul>
-            
-            <li class="menu-item-has-children current-menu-item">
-                <a  href="/" target="">
-                    Home
-                </a>
-                
-            </li>
-            
-            <li class="menu-item-has-children ">
-                <a  href="/about/" target="">
-                    About
-                </a>
-                
-            </li>
-            
-            <li class="menu-item-has-children ">
-                <a  href="/archives/" target="">
-                    Archives
-                </a>
-                
-            </li>
-            
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="#research">Research</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="https://github.com/12yuuuu">GitHub</a></li>
         </ul>
-    </nav>
-</div>
-<!-- menu end -->
-			
-    <!-- mode switcher place -->
-    <div class="trm-mode-switcher-place">
-        <div class="trm-mode-switcher">
-            <i class="iconfont far fa-sun"></i>
-            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
-            <label class="trm-swich" for="trm-swich"></label>
-            <i class="iconfont far fa-moon"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 class="hero-title">Hi, I&rsquo;m Ana.</h1>
+
+          <p class="hero-lead">
+            I&rsquo;m a master&rsquo;s student in Electrical &amp; Computer Engineering at the
+            University of Toronto. I work on making machine learning systems efficient
+            enough to deploy and reliable enough to trust, and on the hardware that
+            runs them. Right now that means FPGA acceleration of state space models.
+          </p>
+
+          <p class="hero-links">
+            <a href="#research">Research</a>
+            <a href="https://github.com/12yuuuu">GitHub</a>
+            <a href="mailto:ana.liu@mail.utoronto.ca">Email</a>
+          </p>
         </div>
-    </div>
-    <!-- mode switcher place end -->
 
-			
-		</div>
-		<div class="trm-menu-btn">
-			<span></span>
-		</div>
-	</div>
-</header>
-            <!-- top bar end -->
-
-            <!-- body -->
-            <div class="trm-content-start">
-    <!-- banner -->
-    <div class="trm-banner">
-    
-    <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/bg4.jpg">
-    <!-- banner cover end -->
-    
-
-    <!-- banner content -->
-    <div class="trm-banner-content trm-overlay">
-        <div class="container">
-            <div class="row">
-                
-                <div class="col-lg-4"></div>
-                
-                <div class="col-lg-8">
-
-                    <!-- banner title -->
-                    <div class="trm-banner-text ">
-                        <div class="trm-label trm-mb-20">
-                            Welcome to my hell and paradise
-                        </div>
-                        <h1 class="trm-mb-30 trm-hsmb-font">
-                            One thing only is necessary
-                        </h1>
-
-                        
-                            <ul class="trm-breadcrumbs trm-label">
-                                <li>
-                                    <a href="/" class="trm-anima-link">Home</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        index.html
-                                    </span>
-                                </li>
-                            </ul>
-                        
-                    </div>
-                    <!-- banner title end -->
-
-                    <!-- scroll hint -->
-                    <span id="scroll-triger" class="trm-scroll-hint-frame">
-                        <div class="trm-scroll-hint"></div>
-                        <span class="trm-label">Scroll down</span>
-                    </span>
-                    <!-- scroll hint end -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- banner content end -->
-</div>
-    <!-- banner end -->
-    <div class="container">
-        <div class="row">
-            
-                <div class="trm-page-sidebar col-lg-4 hidden-sm">
-                    <!-- main card -->
-                    <div class="trm-main-card-frame trm-sidebar">
-    <div class="trm-main-card"> 
-        <!-- card header -->
-<div class="trm-mc-header">
-    <div class="trm-avatar-frame trm-mb-20">
-        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpg">
-    </div>
-    <h5 class="trm-name trm-mb-15">
-        Ana
-    </h5>
-    
-        <div class="trm-label">
-            
-            <span class="trm-typed-text">
-                <!-- Words for theme.user.typedText -->
-            </span>
-        </div>
-    
-</div>
-<!-- card header end -->
-        <!-- sidebar social -->
-
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<div class="trm-social">
-    
-        <a href="https://github.com/12yuuuu" title="github" rel="nofollow" target="_blank">
-            <i class="iconfont fab fa-github"></i>
-        </a>
-    
-</div>
-
-<!-- sidebar social end -->
-        <!-- info -->
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<ul class="trm-table trm-mb-20">
-    
-        <li>
-            <div class="trm-label">
-                Residence:
-            </div>
-            <div class="trm-label trm-label-light">
-                Gokuraku
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                Age:
-            </div>
-            <div class="trm-label trm-label-light">
-                ??
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                Timezone:
-            </div>
-            <div class="trm-label trm-label-light">
-                UTC+8
-            </div>
-        </li>
-    
-</ul>
-<!-- info end -->
-
-        
-    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
-    <!-- action button -->
-    <div class="text-center">
-        <a href="mailto:yu1inge2@gamil.com" class="trm-btn">
-            Contact Me
-            <i class="iconfont far fa-envelope"></i>
-        </a>
-    </div>
-    <!-- action button end -->
-
-    </div>
-</div>
-                    <!-- main card end -->
-                </div>
-            
-            <div class="trm-page-content col-lg-8">
-                <div id="trm-content" class="trm-content">
-                    <!-- categories -->
-
-    <div class="row hidden-sm">
-        
-        
-    </div>
-
-<!-- categories end -->
-
-<!-- newest publications -->
-<div class="row">
-    
-        <div class="col-lg-12">
-            <!-- title -->
-            <h5 class="trm-title-with-divider">
-                Newest Publications 
-                <span data-number="01"></span>
-            </h5>
-        </div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2026/03/09/Test/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
-            
-        </a>
-        
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" #.">
-                    Unclassified
-                </a>
-            </div>
-            <h5>
-                <a href="/2026/03/09/Test/" class="trm-anima-link">
-                    Test
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>26/03/09</li>
-                <li>23:42</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2026/03/08/hello-world/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
-            
-        </a>
-        
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" #.">
-                    Unclassified
-                </a>
-            </div>
-            <h5>
-                <a href="/2026/03/08/hello-world/" class="trm-anima-link">
-                    Hello World
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>26/03/08</li>
-                <li>12:36</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-</div>
-<!-- newest publications end -->
-
-
-    <div class="trm-pagination">
-        <span class="page-number current">1</span>
-    </div>
-
-
-                    <div class="trm-divider footer-divider"></div>
-
-                    <!-- footer -->
-                    <footer style="max-width: 800px; margin: 20px auto; padding: 25px 20px; background: var(--footer-bg); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; color: var(--text-color); font-size: 0.9rem; line-height: 1.8;">
-    
-    <div>
-        &copy; 2023 - 2026 &middot; <a href="/" style="color: var(--primary); font-weight: bold; text-decoration: none;">Ana Liu</a>
-    </div>
-
-    <div>
-        Powered by <a href="https://hexo.io/" target="_blank" style="color: var(--primary); text-decoration: none;">Hexo</a> | Theme - <a href="https://github.com/MaLuns/hexo-theme-async" target="_blank" style="color: var(--primary); text-decoration: none;">Async</a>
-    </div>
-
-    <div>
-        System Online for <span id="sys_time" style="color: var(--primary); font-weight: bold;"></span> Days
-    </div>
-
-    <script>
-        function updateRunTime() {
-            var startTime = new Date("2026/03/08 00:00:00"); 
-            var currentTime = new Date();
-            var timeDiff = currentTime.getTime() - startTime.getTime();
-            var daysTotal = Math.floor(timeDiff / (1000 * 3600 * 24));
-            document.getElementById("sys_time").innerHTML = daysTotal;
-        }
-        updateRunTime();
-    </script>
-</footer>
-                    <!-- footer end -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            <!-- body end -->
-
-            
-
-            
-<div class="trm-fixed-container">
-    
-    
-    
-    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
-        <i class="iconfont fas fa-arrow-up"></i>
-    </div>
-</div>
-        </div>
+        <img class="portrait" src="assets/profile/ana.jpg" alt="Ana Liu" width="570" height="760">
       </div>
-      <!-- scroll container end -->
-  </div>
-  <!-- app wrapper end -->
+    </section>
 
-  
-  <!-- Plugin -->
+    <!-- ============================================================
+         RESEARCH
+         ============================================================ -->
+    <div class="container" id="research">
 
+      <!-- ---------- 01 ---------- -->
+      <section class="page-section">
+        <div class="section-label">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Efficient &amp; Trustworthy ML</h2>
+          <p class="section-note">
+            Compression and automation are accepted on metrics that deployed systems
+            do not actually consume. I measure the gap.
+          </p>
+        </div>
 
+        <div class="section-body">
 
+          <article class="project">
+            <h3 class="project-title">
+              Beyond Accuracy and Calibration: Confidence Ranking Preservation and
+              Routing Consistency for Fixed-Budget Deferral in Quantized Edge AI
+            </h3>
+            <p class="project-status">First author &middot; Under review</p>
+            <p class="project-description">
+              A quantized model is accepted on accuracy and calibration, but a fixed-budget
+              router reads neither. It reads the <em>ordering</em> the confidence score
+              induces, and across ResNet-50, MobileNetV3-L and ViT-B/16 accuracy degrades
+              one to two bit-widths before that ordering does. Ranking alone is not
+              sufficient either: at 7-bit ResNet-50 the ranking is statistically equivalent
+              to full precision while only 0.371 of the deferred set is reproduced.
+              Testing all four properties is what makes the payoff safe to claim: an 8-bit
+              router cuts memory four times over, 20.9 MB to 5.3 MB, and raises compute
+              saving from 51.7% to 57.7% at matched accuracy.
+            </p>
+          </article>
 
-    
-    
-<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+          <article class="project">
+            <h3 class="project-title">Global Rank Stability Does Not Imply Stable Quantile Selection</h3>
+            <p class="project-status">Second author &middot; Under review</p>
+            <p class="project-description">
+              Anything that thresholds a score at a quantile, from CFAR detection to
+              selective classification, is certified with global rank statistics. Those
+              integrate over the whole score distribution while the operator acts at a
+              single point, so the certificate can look near-perfect while the decision
+              is rewritten: rank correlation above 0.98 alongside more than 60% of the
+              selected set replaced. A displacement scale measured locally at the operating
+              quantile predicts that churn across 3,570 operating points and thirteen
+              perturbation families at R-squared 0.968, where the global control reaches
+              0.655.
+            </p>
+          </article>
 
-    
+          <article class="project">
+            <h3 class="project-title">
+              Task-Aware Multi-Model Probability Fusion with Uncertainty-Guided Review
+              for Reliable Liver Volumetry
+            </h3>
+            <p class="project-status">First author &middot; Under review</p>
+            <p class="project-description">
+              The Dice-optimal model and the volume-optimal model are not the same model,
+              so a single overlap metric cannot stand in for surgical risk. Task-aware
+              probability fusion over four 2D, 2.5D and 3D U-Nets beats a per-case oracle
+              that picks the best single network (Dice 0.9238 to 0.9438, volume error 101.6
+              to 69.7 mL). Reviewing the riskiest 10% of voxels catches 70% of what remains,
+              cutting false negatives from 4.18% to 1.49%.
+            </p>
+          </article>
 
-    
-        <script src="/js/plugins/typing.js?v=2.2.7"></script>
-    
+        </div>
+      </section>
 
-    
+      <!-- ---------- 02 ---------- -->
+      <section class="page-section">
+        <div class="section-label">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Computer Vision</h2>
+          <p class="section-note">
+            Recovering geometry and motion from ordinary cameras, without the
+            calibration or the markers such systems usually assume.
+          </p>
+        </div>
 
-    <!-- 数学公式 -->
-    
+        <div class="section-body">
 
-    <!-- 评论插件 -->
-    
+          <article class="project">
+            <h3 class="project-title">Uncalibrated Multi-View Human Pose Estimation</h3>
+            <p class="project-status">First author &middot; Manuscript in preparation</p>
+            <p class="project-description">
+              Multi-view 3D pose normally assumes the cameras have already been
+              calibrated. Recovering camera pose at inference time instead, with no
+              training, reaches AP25 95.83 on CMU Panoptic, above calibrated and fully
+              supervised VoxelPose, MvP, 3DSA and MVGFormer. It also holds 85.4 AP25 when
+              the camera arrangement is changed, where MVGFormer falls to 74.7.
+            </p>
+          </article>
 
-		
+          <article class="project">
+            <h3 class="project-title">
+              A Motor-Cognitive Performance Assessment System Based on Markerless Pose
+              Estimation and Real-Time Computer Vision
+            </h3>
+            <p class="project-status">Co-author &middot; Measurement (Elsevier), under review</p>
+            <p class="project-description">
+              Reaction and movement time in athletic testing are still measured by
+              stopwatch or by strapping sensors to the athlete. A single-camera markerless
+              pipeline measures them from video instead, running at 42 ms latency and
+              resolving event times to within 59 ms.
+            </p>
+          </article>
 
+        </div>
+      </section>
 
+      <!-- ---------- 03 ---------- -->
+      <section class="page-section">
+        <div class="section-label">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Hardware &amp; FPGA</h2>
+          <p class="section-note">
+            Designing the accelerator and the model as one system, rather than
+            compressing a model after the fact and hoping it maps well.
+          </p>
+        </div>
 
+        <div class="section-body">
 
-    <!-- Service Worker -->
-    
-    <!-- baidu push -->
-    
+          <article class="project">
+            <h3 class="project-title">FPGA Acceleration of Mamba Inference</h3>
+            <p class="project-status">Graduate research, in progress</p>
+            <p class="project-description">
+              Selective scan is bound by memory and data movement rather than arithmetic,
+              which makes a state space model a very different accelerator target from a
+              transformer. I am working out where those bottlenecks actually sit in Mamba
+              inference, aiming at an algorithmic or architectural contribution validated
+              on hardware rather than a port of a published design.
+            </p>
+          </article>
 
+          <article class="project">
+            <h3 class="project-title">Hardware-Accelerated LBP Facial Recognition System</h3>
+            <p class="project-status">Verilog RTL &middot; VLSI design project</p>
+            <p class="project-description">
+              An RTL accelerator for Local Binary Pattern feature extraction and
+              matching, built around an SRAM access pattern chosen to keep the
+              datapath fed. Verified through gate-level simulation under a 0.34 ns
+              clock constraint at 82.4% lint coverage.
+            </p>
+          </article>
 
-<script id="async-script" src="/js/main.js?v=2.2.7"></script>
+        </div>
+      </section>
 
-<!-- CDN -->
+    </div>
 
+    <!-- ============================================================
+         EXPERIENCE
+         Two separate tracks, each with its own timeline. A single list
+         would put the BSc below four roles that happened inside it.
+         ============================================================ -->
+    <div class="container" id="experience">
+      <section class="page-section">
+        <div class="section-label">
+          <h2 class="section-title">Experience</h2>
+        </div>
 
-    
+        <div class="section-body">
+          <div class="tracks">
 
-    
+            <div class="track">
+              <h3 class="track-title">Education</h3>
+              <ol>
+                <li class="experience-item reveal">
+                  <p class="experience-date">2026 &ndash; 2028</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">MEng, Electrical &amp; Computer Engineering</h4>
+                    <p class="experience-org">University of Toronto</p>
+                  </div>
+                </li>
 
-    
+                <li class="experience-item reveal">
+                  <p class="experience-date">2022 &ndash; 2026</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">BSc, Electrical Engineering</h4>
+                    <p class="experience-org">National Cheng Kung University</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
 
+            <div class="track">
+              <h3 class="track-title">Research and industry</h3>
+              <ol>
+                <li class="experience-item reveal">
+                  <p class="experience-date">2026</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">Research Assistant</h4>
+                    <p class="experience-org">Academia Sinica</p>
+                  </div>
+                </li>
 
+                <li class="experience-item reveal">
+                  <p class="experience-date">2026</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">Manufacturing Process Improvement Intern</h4>
+                    <p class="experience-org">ASML</p>
+                  </div>
+                </li>
 
+                <li class="experience-item reveal">
+                  <p class="experience-date">2025</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">Process Integration Development Intern</h4>
+                    <p class="experience-org">TSMC</p>
+                  </div>
+                </li>
+
+                <li class="experience-item reveal">
+                  <p class="experience-date">2025 &ndash; 2026</p>
+                  <span class="experience-marker" aria-hidden="true"></span>
+                  <div class="experience-content">
+                    <h4 class="experience-role">Research Assistant</h4>
+                    <p class="experience-org">NCKU AI System Lab</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <div class="container" id="about">
+      <section class="page-section">
+        <div class="section-label">
+          <h2 class="section-title">About</h2>
+        </div>
+
+        <div class="section-body prose">
+          <p>
+            I&rsquo;m a master&rsquo;s student in Electrical &amp; Computer Engineering at the
+            University of Toronto, taking reconfigurable computing and FPGA architecture
+            alongside VLSI design methodology. Before that I read Electrical Engineering
+            at National Cheng Kung University in Taiwan.
+          </p>
+          <p>
+            My work so far has run along two tracks. One asks when a compressed or
+            automated vision system can actually be trusted: which property a deployed
+            system consumes, and whether the metric we accept it on measures that
+            property at all. The other is the hardware underneath: RTL design, FPGA
+            deployment, and two internships spent inside semiconductor manufacturing.
+          </p>
+          <p>
+            Those two tracks have met. My current work is FPGA acceleration of Mamba
+            inference, where the cost is memory and data movement rather than arithmetic,
+            and where the question I find interesting is what the model should look like
+            if the hardware is being designed at the same time.
+          </p>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Ana Liu &middot; Toronto, ON</p>
+      <ul class="footer-links">
+        <li><a href="mailto:ana.liu@mail.utoronto.ca">Email</a></li>
+        <li><a href="https://github.com/12yuuuu">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/anastasialiu">LinkedIn</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
-
 </html>

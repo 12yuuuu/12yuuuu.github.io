@@ -1,0 +1,503 @@
+/* ============================================================
+   DESIGN TOKENS
+   All colours, type sizes and spacing live here as CSS custom
+   properties (variables). Change a value once and the whole site
+   follows. Used elsewhere with var(--name).
+   ============================================================ */
+:root {
+  /* Colour: blue and white. One near-black navy for text, two blue-greys,
+     a barely-blue page ground, and a single saturated blue used sparingly
+     for accents. Nothing here is warm, which is what makes the palette
+     read as "blue and white" rather than "grey". */
+  --color-bg:        #ffffff;
+  --color-text:      #0a1628;
+  --color-muted:     #4a5f7a;
+  --color-rule:      #d3e0ee;
+  --color-line:      #bcd4ef;   /* the timeline rule: bluer than a hairline */
+  --color-accent:    #0b57d0;
+
+  /* Type. Serif for headings, sans for everything else.
+     The fallbacks after the first name are used if the web font
+     fails to load, so the page never falls back to Times by accident. */
+  --font-sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+
+  /* clamp(min, preferred, max) lets a size scale with the viewport
+     width but never go below min or above max. This is how the site
+     stays readable on phones without extra media queries. */
+  --size-hero:    clamp(2.6rem, 6.5vw, 4.75rem);
+  --size-lead:    clamp(1.15rem, 2vw, 1.45rem);
+  --size-title:   clamp(1.5rem, 2.6vw, 2rem);
+  --size-project: clamp(1.2rem, 1.9vw, 1.4rem);
+  --size-body:    1.0625rem;
+  --size-small:   0.875rem;
+
+  /* Spacing: a small consistent scale, not arbitrary numbers. */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+  --space-6: 7rem;
+
+  --container-width: 1120px;
+}
+
+/* ============================================================
+   BASE / RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;   /* padding/border count inside an element's width */
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a { color: inherit; }
+
+h1, h2, h3, h4, p, ul, ol {
+  margin: 0;                /* spacing is applied deliberately, not inherited */
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+html {
+  scroll-behavior: smooth;  /* anchor links glide instead of jumping */
+}
+
+/* The shared horizontal frame: centred, capped width, side padding. */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* ============================================================
+   SITE HEADER / NAVIGATION
+   ============================================================ */
+.site-header {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+}
+
+.site-name {
+  font-size: var(--size-body);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.nav-list a {
+  font-size: var(--size-small);
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.nav-list a:hover { color: var(--color-accent); }
+
+/* The Menu button only exists for small screens. */
+.nav-toggle {
+  display: none;
+  padding: var(--space-1) 0;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+  font-family: inherit;
+  font-size: var(--size-small);
+  cursor: pointer;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: var(--space-5) 0;
+}
+
+/* Text on the left, avatar on the right.
+   "1fr auto" means: the text takes all the leftover width, the
+   avatar column is only as wide as the avatar itself. */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+/* Portrait photo. A plain 3:4 rectangle with square corners, matching
+   the project figures rather than the rounded-avatar convention. */
+.portrait {
+  width: clamp(160px, 24vw, 260px);
+  aspect-ratio: 3 / 4;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--size-hero);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;   /* large type needs slightly tighter tracking */
+}
+
+.hero-lead {
+  max-width: 48ch;           /* a comfortable measure for reading */
+  margin-top: var(--space-3);
+  font-size: var(--size-lead);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.hero-links a {
+  font-size: var(--size-small);
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+/* ============================================================
+   PAGE SECTIONS
+   The shared two-column frame used by Research, Experience and
+   About: a sticky label on the left, content on the right.
+   ============================================================ */
+.page-section {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.section-label {
+  position: sticky;           /* stays in view while the content scrolls past */
+  top: var(--space-3);
+  align-self: start;
+}
+
+.section-number {
+  display: block;
+  font-size: var(--size-small);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.section-title {
+  margin-top: var(--space-1);
+  font-family: var(--font-serif);
+  font-size: var(--size-title);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.section-note {
+  max-width: 30ch;
+  margin-top: var(--space-2);
+  font-size: var(--size-small);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   PROJECT
+   Text only. With no figure to anchor the eye, the title carries the
+   weight and a hairline separates one project from the next.
+   ============================================================ */
+.project {
+  max-width: 64ch;
+}
+
+/* "A + B" is the adjacent sibling selector: it matches a .project that
+   directly follows another .project, so the first one gets no rule
+   above it and no extra space. */
+.project + .project {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-rule);
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: var(--size-project);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.project-status {
+  margin-top: var(--space-1);
+  font-size: var(--size-small);
+  color: var(--color-accent);
+}
+
+.project-description {
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   EXPERIENCE
+   Two tracks, education and work, each with its own timeline.
+   Intentionally quieter than research: a date, a role, an
+   organisation, and nothing else.
+   ============================================================ */
+/* The two tracks sit side by side, always, until the phone breakpoint
+   stacks them. Two explicit equal columns rather than auto-fit: auto-fit
+   collapsed to one column in the narrow band where the page still has
+   its label column but no longer has room for two tracks beside it. */
+.tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.track-title {
+  margin-bottom: var(--space-3);
+  font-size: var(--size-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Each entry is a marker column and a content column, with the date
+   stacked above the role rather than beside it. Side by side there is
+   no room for a separate date column. */
+.experience-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  padding-bottom: var(--space-3);
+}
+
+.experience-item:last-child { padding-bottom: 0; }
+
+.experience-marker  { grid-column: 1; grid-row: 1; }
+.experience-date    { grid-column: 2; grid-row: 1; }
+.experience-content { grid-column: 2; grid-row: 2; }
+
+/* The axis. Drawn per entry rather than once on the whole list:
+   starting at this dot and running exactly one item height lands on
+   the next dot, whatever height the entries turn out to be. The last
+   entry gets no segment, so the line stops at the final dot. */
+.experience-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 1rem;                 /* centre of the 2rem marker column */
+  transform: translateX(-50%);
+  top: 0.78rem;               /* centre of the dot */
+  height: 100%;
+  width: 1px;
+  background: var(--color-line);
+  z-index: 0;
+}
+
+/* The node itself. An opaque background punches a clean hole in the
+   line behind it, and z-index puts it above that line. */
+.experience-marker {
+  position: relative;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  margin: 0.4rem auto 0;      /* auto left/right centres it in its column */
+  border: 1.5px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.experience-date {
+  font-size: var(--size-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.experience-role {
+  font-size: var(--size-body);
+  font-weight: 500;
+}
+
+.experience-org {
+  margin-top: 2px;
+  font-size: var(--size-small);
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   Elements marked .reveal fade and slide up the first time they
+   enter the viewport. js/main.js does the detecting.
+
+   Everything here is scoped to .js, a class main.js puts on <html>.
+   Without JavaScript the class is never added, the rules below never
+   apply, and the content is simply visible, never hidden forever.
+   ============================================================ */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* A small stagger so a row of items arrives in sequence, not at once. */
+.js .reveal:nth-child(2) { transition-delay: 0.06s; }
+.js .reveal:nth-child(3) { transition-delay: 0.12s; }
+.js .reveal:nth-child(4) { transition-delay: 0.18s; }
+.js .reveal:nth-child(5) { transition-delay: 0.24s; }
+.js .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+/* Readers who ask their OS for less motion get none of it. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   PROSE (About)
+   ============================================================ */
+.prose p {
+  max-width: 62ch;
+  color: var(--color-muted);
+}
+
+.prose p + p { margin-top: var(--space-2); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.footer-name {
+  font-size: var(--size-small);
+  color: var(--color-muted);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.footer-links a {
+  font-size: var(--size-small);
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--color-accent); }
+
+/* ============================================================
+   RESPONSIVE
+   Two breakpoints only. Everything else is handled by clamp(),
+   flex-wrap and max-width above.
+   ============================================================ */
+
+/* Tablet: page sections become one column. */
+@media (max-width: 900px) {
+  .page-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .section-label {
+    position: static;         /* sticky makes no sense once stacked */
+  }
+
+  .section-note { max-width: 52ch; }
+}
+
+/* Phone: stack the project card and collapse the navigation. */
+@media (max-width: 620px) {
+  :root {
+    --space-5: 3.5rem;
+    --space-6: 4.5rem;
+  }
+
+  /* Only now do the two experience tracks stop sitting side by side. */
+  .tracks { grid-template-columns: 1fr; }
+
+  /* Hero stacks, and the avatar moves above the text rather than
+     below the links. grid-row places each child on an explicit row. */
+  .hero-inner { grid-template-columns: 1fr; }
+  .portrait   { grid-row: 1; }
+  .hero-text  { grid-row: 2; }
+
+  .nav-toggle { display: block; }
+
+  /* Hidden by default; js/main.js adds .is-open to reveal it. */
+  .site-nav {
+    display: none;
+    flex-basis: 100%;         /* forces its own row inside the flex header */
+    padding-bottom: var(--space-3);
+  }
+
+  .site-nav.is-open { display: block; }
+
+  .nav-list {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    padding-top: var(--space-2);
+  }
+}
