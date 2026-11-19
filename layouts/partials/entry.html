@@ -1,0 +1,27 @@
+{{- /* One row of the publications, projects or open-source list, in the
+       reference layout: thumbnail on the left, then title, authors,
+       venue line, "/"-separated links and a short abstract.
+       .e is the data entry; .me is the owner's name to embolden. */}}
+{{- $e := .e }}{{ $me := .me }}
+        <div class="publication-with-teaser">
+{{- with $e.figure }}
+          <div class="publication-teaser">
+            <div class="teaser-container"><img src="{{ .src }}" alt="{{ .alt }}" loading="lazy"></div>
+          </div>
+{{- end }}
+          <div class="publication-content">
+            <div class="publication-meta">
+              {{- with $e.url }}<a href="{{ . }}" class="publication-title">{{ $e.title }}</a>{{ else }}<span class="publication-title">{{ $e.title }}</span>{{ end }}
+{{- with $e.authors }}
+              <br><span class="authors">{{ range $i, $a := . }}{{ if $i }},&nbsp;{{ end }}{{ if eq $a $me }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end }}{{ end }}</span>
+{{- end }}
+{{- with $e.meta }}
+              <br><em class="venue">{{ . | safeHTML }}</em>
+{{- end }}
+{{- with $e.links }}
+              <br><span class="publication-links">{{ range $i, $l := . }}{{ if $i }} / {{ end }}<a href="{{ $l.url }}">{{ $l.label }}</a>{{ end }}</span>
+{{- end }}
+            </div>
+            <div class="publication-abstract">{{ $e.text | safeHTML }}</div>
+          </div>
+        </div>

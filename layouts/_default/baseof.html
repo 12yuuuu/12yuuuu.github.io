@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} – {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="author" content="{{ .Site.Params.fullname }}">
+  <meta name="color-scheme" content="light dark">
+  {{- /* Every link to the site's own files is relative, so the pages work
+         from any folder (GitHub Pages, a local preview, a sub-path). */}}
+  {{- $depth := sub (len (split (strings.TrimPrefix "/" .RelPermalink) "/")) 1 }}
+  {{- /* The 404 page is served at any address, so it uses root-absolute paths. */}}
+  {{- $root := cond (eq .Kind "404") "/" (strings.Repeat $depth "../") }}
+  <link rel="icon" href="{{ $root }}assets/favicon.svg" type="image/svg+xml">
+  <!-- Fetch the heading font straight away, so headings don't switch
+       font after the page has appeared. -->
+  <link rel="preload" href="{{ $root }}assets/fonts/Absans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ $root }}css/style.css">
+  <!-- Runs before anything is painted.
+       1. Marks the page as JavaScript-enabled, so the theme button and
+          the demo on the localized-certification page only appear when
+          js/main.js can run.
+       2. Re-applies a light/dark choice saved on an earlier page, so a
+          dark-mode reader never sees a white flash. -->
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) { /* storage blocked: follow the operating system */ }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- Light/dark switch, top right. Hidden until js/main.js is running. -->
+  <button class="theme-toggle" type="button" aria-pressed="false" title="Dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span class="visually-hidden">Dark mode</span>
+  </button>
+
+  <div id="content">
+    <div class="container">
+{{ block "main" . }}{{ end }}
+    </div>
+  </div>
+
+{{ partial "footer.html" (dict "root" $root) }}
+</body>
+</html>

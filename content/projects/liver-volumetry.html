@@ -1,0 +1,212 @@
+---
+# Not built: the paper has no public link yet (18 November 2026).
+draft: true
+title: "Task-Aware Multi-Model Probability Fusion with Uncertainty-Guided Review for Reliable Liver Volumetry"
+short: "Liver volumetry with task-aware fusion"
+description: "First-author manuscript under review: task-aware probability fusion and uncertainty-guided review for liver volumetry."
+weight: 3
+---
+    <article>
+
+      <header class="page-header article-header container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#publications">Publications</a></li>
+          </ol>
+        </nav>
+        <h1 class="article-title">
+          Task-Aware Multi-Model Probability Fusion with Uncertainty-Guided Review for Reliable Liver Volumetry
+        </h1>
+        <div class="article-meta">
+          <span>First author, under review</span>
+          <ul class="tag-list" aria-label="Topics"><li class="tag">Medical imaging</li><li class="tag">Segmentation</li><li class="tag">Uncertainty</li></ul>
+        </div>
+      </header>
+
+      <div class="article-layout container">
+        <div class="article-body">
+          <figure class="article-figure">
+            <div class="figure-plate" style="view-transition-name: project-figure-liver-volumetry">
+              <svg viewBox="0 0 800 270" role="img" aria-labelledby="figure-title">
+                <title id="figure-title">Pipeline: an input scan goes through four U-Nets, their probabilities are fused, a liver mask and volume come out, and the riskiest 10% of voxels are flagged for review.</title>
+                <rect class="fig-box" x="61" y="83" width="60" height="60"/>
+                <rect class="fig-box" x="52" y="92" width="60" height="60"/>
+                <rect class="fig-box" x="43" y="101" width="60" height="60"/>
+                <rect class="fig-box" x="34" y="110" width="60" height="60"/>
+                <text class="fig-label fig-small" x="78" y="206" text-anchor="middle">Input scan</text>
+                <path class="fig-line" d="M132 140 L162 140"/>
+                <path class="fig-solid" d="M170 140 L162 144 L162 136 Z"/>
+                <text class="fig-label fig-small" x="222" y="48" text-anchor="middle">Four U-Nets</text>
+                <rect class="fig-solid" x="186" y="64" width="7" height="26"/>
+                <rect class="fig-solid" x="197" y="70" width="7" height="20"/>
+                <rect class="fig-solid" x="208" y="76" width="7" height="14"/>
+                <rect class="fig-solid" x="219" y="82" width="7" height="8"/>
+                <rect class="fig-solid" x="230" y="76" width="7" height="14"/>
+                <rect class="fig-solid" x="241" y="70" width="7" height="20"/>
+                <rect class="fig-solid" x="252" y="64" width="7" height="26"/>
+                <rect class="fig-solid" x="186" y="104" width="7" height="26"/>
+                <rect class="fig-solid" x="197" y="110" width="7" height="20"/>
+                <rect class="fig-solid" x="208" y="116" width="7" height="14"/>
+                <rect class="fig-solid" x="219" y="122" width="7" height="8"/>
+                <rect class="fig-solid" x="230" y="116" width="7" height="14"/>
+                <rect class="fig-solid" x="241" y="110" width="7" height="20"/>
+                <rect class="fig-solid" x="252" y="104" width="7" height="26"/>
+                <rect class="fig-solid" x="186" y="144" width="7" height="26"/>
+                <rect class="fig-solid" x="197" y="150" width="7" height="20"/>
+                <rect class="fig-solid" x="208" y="156" width="7" height="14"/>
+                <rect class="fig-solid" x="219" y="162" width="7" height="8"/>
+                <rect class="fig-solid" x="230" y="156" width="7" height="14"/>
+                <rect class="fig-solid" x="241" y="150" width="7" height="20"/>
+                <rect class="fig-solid" x="252" y="144" width="7" height="26"/>
+                <rect class="fig-solid" x="186" y="184" width="7" height="26"/>
+                <rect class="fig-solid" x="197" y="190" width="7" height="20"/>
+                <rect class="fig-solid" x="208" y="196" width="7" height="14"/>
+                <rect class="fig-solid" x="219" y="202" width="7" height="8"/>
+                <rect class="fig-solid" x="230" y="196" width="7" height="14"/>
+                <rect class="fig-solid" x="241" y="190" width="7" height="20"/>
+                <rect class="fig-solid" x="252" y="184" width="7" height="26"/>
+                <text class="fig-label fig-small fig-muted" x="222" y="236" text-anchor="middle">2D, 2.5D and 3D</text>
+                <path class="fig-line fig-line-soft" d="M266 79 L334 140"/>
+                <path class="fig-line fig-line-soft" d="M266 119 L334 140"/>
+                <path class="fig-line fig-line-soft" d="M266 159 L334 140"/>
+                <path class="fig-line fig-line-soft" d="M266 199 L334 140"/>
+                <rect class="fig-solid" x="334" y="106" width="136" height="68"/>
+                <text class="fig-label fig-strong fig-on-solid" x="402" y="135" text-anchor="middle">Task-aware</text>
+                <text class="fig-label fig-strong fig-on-solid" x="402" y="157" text-anchor="middle">fusion</text>
+                <path class="fig-line" d="M470 140 L500 140"/>
+                <path class="fig-solid" d="M508 140 L500 144 L500 136 Z"/>
+                <rect class="fig-box" x="512" y="106" width="120" height="68"/>
+                <text class="fig-label" x="572" y="135" text-anchor="middle">Liver mask</text>
+                <text class="fig-label" x="572" y="157" text-anchor="middle">and volume</text>
+                <path class="fig-line" d="M632 140 L660 140"/>
+                <path class="fig-solid" d="M668 140 L660 144 L660 136 Z"/>
+                <rect class="fig-soft" x="676" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="676" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="676" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="676" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="676" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="689" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="689" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="689" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="689" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="689" y="161" width="10" height="10"/>
+                <rect class="fig-solid" x="702" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="702" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="702" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="702" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="702" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="715" y="109" width="10" height="10"/>
+                <rect class="fig-solid" x="715" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="715" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="715" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="715" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="728" y="109" width="10" height="10"/>
+                <rect class="fig-solid" x="728" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="728" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="728" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="728" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="741" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="741" y="122" width="10" height="10"/>
+                <rect class="fig-solid" x="741" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="741" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="741" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="754" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="754" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="754" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="754" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="754" y="161" width="10" height="10"/>
+                <rect class="fig-soft" x="767" y="109" width="10" height="10"/>
+                <rect class="fig-soft" x="767" y="122" width="10" height="10"/>
+                <rect class="fig-soft" x="767" y="135" width="10" height="10"/>
+                <rect class="fig-soft" x="767" y="148" width="10" height="10"/>
+                <rect class="fig-soft" x="767" y="161" width="10" height="10"/>
+                <text class="fig-label fig-small" x="726" y="206" text-anchor="middle">Review the</text>
+                <text class="fig-label fig-small" x="726" y="224" text-anchor="middle">riskiest 10%</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span> The probabilities of four
+              U-Nets (2D, 2.5D and 3D) are fused in a task-aware way, and the
+              riskiest 10% of voxels are then flagged for review.
+            </figcaption>
+          </figure>
+
+          <div class="prose">
+            <p class="lead">
+              The model with the best Dice score is not the one with the best volume
+              estimate, so a single overlap metric cannot stand in for surgical
+              risk.
+            </p>
+
+            <h2 id="approach">Approach</h2>
+            <p>
+              The probabilities of four U-Nets, in 2D, 2.5D and 3D, are fused in a
+              task-aware way, and an uncertainty-guided review then targets the
+              riskiest voxels.
+            </p>
+
+            <h2 id="results">Results</h2>
+            <p>
+              The fusion outperforms a per-case oracle that picks the best single
+              network: Dice rises from 0.9238 to 0.9438 and volume error falls from
+              101.6 to 69.7 mL. Reviewing the riskiest 10% of voxels catches 70% of
+              what remains, cutting false negatives from 4.18% to 1.49%.
+            </p>
+
+            <h2 id="key-figures">Key figures</h2>
+            <div class="table-scroll" role="region" aria-labelledby="key-figures" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Setting</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Dice</td>
+                    <td class="spec-value">0.9238 → 0.9438</td>
+                    <td class="spec-note">best single network per case (oracle) → task-aware fusion</td>
+                  </tr>
+                  <tr>
+                    <td>Volume error</td>
+                    <td class="spec-value">101.6 mL → 69.7 mL</td>
+                    <td class="spec-note">same comparison</td>
+                  </tr>
+                  <tr>
+                    <td>False negatives</td>
+                    <td class="spec-value">4.18% → 1.49%</td>
+                    <td class="spec-note">after reviewing the riskiest 10% of voxels</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side column: project facts and a table of contents that
+             follows the reader (section 4 of js/main.js). -->
+        <aside class="article-aside" aria-label="Project details">
+          <section class="facts-panel" aria-labelledby="facts-title">
+            <h2 class="aside-title" id="facts-title">Project</h2>
+            <dl class="facts">
+              <div>
+                <dt>Role</dt>
+                <dd>First author</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Under review</dd>
+              </div>
+            </dl>
+          </section>
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 class="aside-title" id="toc-title">On this page</h2>
+            <ol class="toc-list">
+              <li><a href="#approach">Approach</a></li>
+              <li><a href="#results">Results</a></li>
+              <li><a href="#key-figures">Key figures</a></li>
+            </ol>
+          </nav>
+        </aside>
+      </div>
+
+    </article>

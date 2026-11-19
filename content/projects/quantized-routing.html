@@ -1,0 +1,195 @@
+---
+# Not built: the paper has no public link yet (18 November 2026).
+draft: true
+title: "Beyond Accuracy and Calibration: Confidence Ranking Preservation and Routing Consistency for Fixed-budget Deferral in Quantized Edge AI"
+short: "Confidence ranking and routing consistency"
+description: "First-author manuscript under review: what quantization does to the inputs a fixed-budget router defers."
+weight: 1
+---
+    <article>
+
+      <header class="page-header article-header container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#publications">Publications</a></li>
+          </ol>
+        </nav>
+        <h1 class="article-title">
+          Beyond Accuracy and Calibration: Confidence Ranking Preservation and Routing Consistency for Fixed-budget Deferral in Quantized Edge AI
+        </h1>
+        <div class="article-meta">
+          <span>First author, under review</span>
+          <ul class="tag-list" aria-label="Topics"><li class="tag">Quantization</li><li class="tag">Edge AI</li><li class="tag">Routing</li></ul>
+        </div>
+      </header>
+
+      <div class="article-layout container">
+        <div class="article-body">
+          <figure class="article-figure">
+            <div class="figure-plate" style="view-transition-name: project-figure-quantized-routing">
+              <svg viewBox="0 0 800 320" role="img" aria-labelledby="figure-title">
+                <title id="figure-title">Diagram of fixed-budget deferral from a quantized MobileNetV3-L router to an FP32 ResNet-50, beside a bar chart of nominal router weight storage: 20.9 MB at FP32, 5.3 MB at 8 bits.</title>
+                <text class="fig-label fig-small fig-muted" x="44" y="64" text-anchor="middle">Inputs</text>
+                <circle class="fig-soft" cx="44" cy="92" r="6"/>
+                <circle class="fig-soft" cx="44" cy="116" r="6"/>
+                <circle class="fig-soft" cx="44" cy="140" r="6"/>
+                <circle class="fig-soft" cx="44" cy="164" r="6"/>
+                <circle class="fig-soft" cx="44" cy="188" r="6"/>
+                <circle class="fig-soft" cx="44" cy="212" r="6"/>
+                <circle class="fig-soft" cx="44" cy="236" r="6"/>
+                <path class="fig-line" d="M62 164 L110 164"/>
+                <path class="fig-solid" d="M118 164 L110 168 L110 160 Z"/>
+                <rect class="fig-solid" x="122" y="126" width="172" height="76"/>
+                <text class="fig-label fig-strong fig-on-solid" x="208" y="159" text-anchor="middle">Small model</text>
+                <text class="fig-label fig-small fig-on-solid" x="208" y="183" text-anchor="middle">MobileNetV3-L, quantized</text>
+                <path class="fig-line" d="M294 164 L326 164"/>
+                <path class="fig-line" d="M326 164 L326 74 L362 74"/>
+                <path class="fig-solid" d="M370 74 L362 78 L362 70 Z"/>
+                <path class="fig-line" d="M326 164 L326 270 L362 270"/>
+                <path class="fig-solid" d="M370 270 L362 274 L362 266 Z"/>
+                <text class="fig-label fig-small fig-muted" x="374" y="34">Higher scores</text>
+                <rect class="fig-box" x="374" y="46" width="182" height="56"/>
+                <text class="fig-label" x="465" y="80" text-anchor="middle">Accept prediction</text>
+                <text class="fig-label fig-small fig-muted" x="374" y="222">Lowest scores, fixed budget</text>
+                <rect class="fig-box" x="374" y="234" width="182" height="72"/>
+                <text class="fig-label fig-strong" x="465" y="264" text-anchor="middle">Large model</text>
+                <text class="fig-label fig-small" x="465" y="288" text-anchor="middle">FP32 ResNet-50</text>
+                <text class="fig-label fig-strong" x="612" y="98">Nominal router weights</text>
+                <text class="fig-label fig-small fig-muted" x="612" y="130">FP32</text>
+                <path class="fig-soft" d="M612 138 H708 A4 4 0 0 1 712 142 V154 A4 4 0 0 1 708 158 H612 Z"/>
+                <text class="fig-label" x="720" y="153">20.9 MB</text>
+                <text class="fig-label fig-small fig-muted" x="612" y="192">8-bit</text>
+                <path class="fig-solid" d="M612 200 H633.4 A4 4 0 0 1 637.4 204 V216 A4 4 0 0 1 633.4 220 H612 Z"/>
+                <text class="fig-label" x="645.4" y="215">5.3 MB</text>
+                <text class="fig-label fig-strong" x="612" y="264">About 75% less</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span> Fixed-budget deferral. A
+              small model scores every input; the lowest-scoring inputs, up to a
+              fixed budget, are deferred to a larger model and the rest are
+              accepted. Right: nominal weight storage of the router at FP32 and at 8
+              bits.
+            </figcaption>
+          </figure>
+
+          <div class="prose">
+            <p class="lead">
+              Quantized models are checked for accuracy and calibration, but a
+              fixed-budget router uses neither. It acts on the <em>ordering</em> of
+              the confidence scores.
+            </p>
+
+            <h2 id="the-question">The question</h2>
+            <p>
+              Many edge systems run a small model first and defer the inputs it is
+              least confident about to a larger model, up to a fixed budget. After
+              quantization, does the small model still defer the same inputs?
+              Accuracy and calibration do not answer that question.
+            </p>
+
+            <h2 id="what-i-did">What I did</h2>
+            <p>
+              The study covers per-channel, round-to-nearest, weight-only
+              post-training quantization of ResNet-50, MobileNetV3-Large and
+              ViT-B/16, with an activation-quantization check. My focus was the
+              quantization study and the evaluation of ranking and routing behavior.
+            </p>
+
+            <h2 id="what-we-found">What we found</h2>
+            <p>
+              Across ResNet-50, MobileNetV3-L and ViT-B/16, accuracy degrades one to
+              two bit-widths before the ordering does.
+            </p>
+            <p>
+              Preserving the ranking is not enough on its own, either. For ResNet-50
+              at 7 bits the ranking is statistically equivalent to full precision,
+              yet the deferred set overlaps the full-precision one with a Jaccard
+              index of only 0.371: about 46% of the deferred inputs are replaced.
+            </p>
+            <p>
+              The payoff is only safe to claim once all four properties are tested:
+              accuracy, calibration, ranking and routing consistency. In a separate
+              cascade experiment, where a MobileNetV3-L router defers to a
+              full-precision ResNet-50, the 8-bit router cuts nominal weight storage
+              from 20.9 MB to 5.3 MB, about 75% less. At the same 42.7% deferral
+              budget, cascade accuracy is 80.39% with the FP32 router and 80.40%
+              with the 8-bit one.
+            </p>
+
+            <h2 id="caveats">Caveats</h2>
+            <p>
+              The storage figure is nominal weight storage, not measured energy,
+              latency or total memory; real-device energy and latency are the next
+              measurements. The 42.7% budget was chosen on the evaluation split, so
+              the cascade result is exploratory. The ResNet-50 overlap result and
+              the MobileNetV3-L cascade come from separate experiments.
+            </p>
+
+            <h2 id="key-figures">Key figures</h2>
+            <div class="table-scroll" role="region" aria-labelledby="key-figures" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Setting</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Deferred-set Jaccard overlap with full precision</td>
+                    <td class="spec-value">0.371</td>
+                    <td class="spec-note">ResNet-50 at 7 bits</td>
+                  </tr>
+                  <tr>
+                    <td>Nominal router weight storage</td>
+                    <td class="spec-value">20.9 MB → 5.3 MB</td>
+                    <td class="spec-note">MobileNetV3-L, FP32 → 8-bit</td>
+                  </tr>
+                  <tr>
+                    <td>Cascade accuracy at a 42.7% deferral budget</td>
+                    <td class="spec-value">80.39% → 80.40%</td>
+                    <td class="spec-note">FP32 → 8-bit router; paired 90% interval for the difference −0.03 to +0.05 percentage points; exploratory</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side column: project facts and a table of contents that
+             follows the reader (section 4 of js/main.js). -->
+        <aside class="article-aside" aria-label="Project details">
+          <section class="facts-panel" aria-labelledby="facts-title">
+            <h2 class="aside-title" id="facts-title">Project</h2>
+            <dl class="facts">
+              <div>
+                <dt>Role</dt>
+                <dd>First author</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Under review</dd>
+              </div>
+              <div>
+                <dt>Where</dt>
+                <dd>Academia Sinica</dd>
+              </div>
+              <div>
+                <dt>Models</dt>
+                <dd>ResNet-50<br>MobileNetV3-L<br>ViT-B/16</dd>
+              </div>
+            </dl>
+          </section>
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 class="aside-title" id="toc-title">On this page</h2>
+            <ol class="toc-list">
+              <li><a href="#the-question">The question</a></li>
+              <li><a href="#what-i-did">What I did</a></li>
+              <li><a href="#what-we-found">What we found</a></li>
+              <li><a href="#caveats">Caveats</a></li>
+              <li><a href="#key-figures">Key figures</a></li>
+            </ol>
+          </nav>
+        </aside>
+      </div>
+
+    </article>

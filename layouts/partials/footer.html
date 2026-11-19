@@ -1,0 +1,16 @@
+{{- $root := .root }}
+  <!-- FOOTER (layouts/partials/footer.html): a rule, centred links,
+       and the name, as on the reference; text links instead of icons. -->
+  <div id="footer">
+    <hr>
+    <div class="container text-center">
+      <a href="mailto:{{ site.Params.email }}" title="E-mail">Email</a>
+      <a href="{{ site.Params.github }}" title="GitHub">GitHub</a>
+      <a href="{{ site.Params.linkedin }}" title="LinkedIn">LinkedIn</a>
+    </div>
+    <div class="container text-center">
+      <a href="{{ $root }}index.html" title="By {{ site.Params.fullname }}"><small>© {{ now.Year }} {{ site.Params.fullname }}</small></a>
+    </div>
+  </div>
+
+  <script src="{{ $root }}js/main.js"></script>

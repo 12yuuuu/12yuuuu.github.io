@@ -1,0 +1,196 @@
+---
+# Not built: the owner removed this project from the site (18 November 2026).
+draft: true
+title: "MOSFET Characterization and CMOS Inverter Design"
+short: "CMOS inverter, from devices to layout"
+description: "A CMOS inverter through the full custom flow: device characterization, delay-model extraction, sizing, layout, Calibre DRC/LVS and post-layout comparison."
+weight: 5
+---
+    <article>
+
+      <header class="page-header article-header container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#projects">Projects</a></li>
+          </ol>
+        </nav>
+        <h1 class="article-title">
+          MOSFET Characterization and CMOS Inverter Design
+        </h1>
+        <div class="article-meta">
+          <span>Graduate course project, ECE1388</span>
+          <ul class="tag-list" aria-label="Topics"><li class="tag">CMOS</li><li class="tag">Layout</li><li class="tag">DRC / LVS</li></ul>
+        </div>
+      </header>
+
+      <div class="article-layout container">
+        <div class="article-body">
+          <figure class="article-figure">
+            <div class="figure-plate figure-plate-image" style="view-transition-name: project-figure-cmos-inverter">
+              <img src="../assets/projects/cmos-inverter-sizing.png" alt="Simulation plot from the report: NMH falls and NML rises as the total pMOS width wpv grows from 7.6 to 11.6 µm; they cross at 9.503 µm, where both are 334.6 mV." width="996" height="640">
+            </div>
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span> The sizing sweep, from
+              my report: NM<sub>H</sub> and NM<sub>L</sub> against the total pMOS
+              width with W<sub>n</sub> = 32, crossing at 9.503 µm.
+            </figcaption>
+          </figure>
+
+          <div class="prose">
+            <p class="lead">
+              One small circuit, taken through the full custom flow: characterize
+              the transistors, extract a delay model, size the inverter, lay it out,
+              verify it, and measure what the layout changed.
+            </p>
+
+            <h2 id="device-characterization">Device characterization</h2>
+            <p>
+              From simulated nMOS and pMOS I–V curves I extracted a threshold
+              voltage of V<sub>t</sub> = 0.27 V (V<sub>bs</sub> = 0 V,
+              V<sub>ds</sub> = 0.1 V) and an off-current of 1.213 nA (V<sub>gs</sub>
+              = 0 V, V<sub>ds</sub> = 1 V). The curves also show velocity saturation
+              in the shorter device, exponential subthreshold conduction, DIBL
+              raising the subthreshold current at higher V<sub>ds</sub>, and the
+              body effect shifting V<sub>t</sub>.
+            </p>
+
+            <h2 id="delay-model">Delay model</h2>
+            <p>
+              To extract the effective gate capacitance, I swept a load capacitance
+              until the delay into it matched the delay into a real gate. That gave
+              9.63 fF for rising and 8.84 fF for falling edges, an average of
+              C<sub>g</sub> = 9.23 fF. From fanout-of-3 and fanout-of-4 delays (FO4:
+              15.75 ps rising, 15.29 ps falling) I fitted effective resistances
+              R<sub>N</sub> = 212 Ω and R<sub>P</sub> = 232 Ω. These are effective
+              values fitted to simulated delays, not fixed device constants.
+            </p>
+
+            <h2 id="sizing">Sizing</h2>
+            <p>
+              With W<sub>n</sub> = 32, I swept the total pMOS width from 7.68 to
+              11.52 µm and measured both noise margins at the points where the
+              transfer curve’s slope is −1. They cross at 9.503 µm (W<sub>p</sub> ≈
+              79.2), which I rounded to W<sub>p</sub> = 80: W<sub>p</sub> /
+              W<sub>n</sub> = 2.5, NM<sub>H</sub> = 333.9 mV and NM<sub>L</sub> =
+              335.3 mV. For comparison, with W<sub>p</sub> = 64 they were 349.2 and
+              322.0 mV. The pMOS is wider because holes have lower mobility than
+              electrons.
+            </p>
+
+            <h2 id="layout-and-verification">Layout and verification</h2>
+            <p>
+              I drew a four-finger layout that is clean in Calibre DRC and LVS, then
+              simulated it after extraction.
+            </p>
+
+            <h2 id="results">Results</h2>
+            <p>
+              Compared with the one-finger schematic, NM<sub>H</sub> rose by 12.8 mV
+              (3.8%) to 346.7 mV, and NM<sub>L</sub> by 3.4 mV (1.0%) to 338.7 mV.
+              These differences may come from the four-finger layout’s
+              geometry-dependent transistor parameters and parasitic resistance near
+              switching; parasitic capacitance does not affect the steady-state
+              transfer curve.
+            </p>
+            <p>
+              All results are from simulation and physical verification; no silicon
+              was measured.
+            </p>
+
+            <h2 id="key-figures">Key figures</h2>
+            <div class="table-scroll" role="region" aria-labelledby="key-figures" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Setting</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Threshold voltage V<sub>t</sub></td>
+                    <td class="spec-value">0.27 V</td>
+                    <td class="spec-note">V<sub>bs</sub> = 0 V, V<sub>ds</sub> = 0.1 V</td>
+                  </tr>
+                  <tr>
+                    <td>Off-current</td>
+                    <td class="spec-value">1.213 nA</td>
+                    <td class="spec-note">V<sub>gs</sub> = 0 V, V<sub>ds</sub> = 1 V</td>
+                  </tr>
+                  <tr>
+                    <td>Effective gate capacitance C<sub>g</sub></td>
+                    <td class="spec-value">9.23 fF</td>
+                    <td class="spec-note">mean of 9.63 (rising) and 8.84 fF (falling)</td>
+                  </tr>
+                  <tr>
+                    <td>FO4 delay, rising / falling</td>
+                    <td class="spec-value">15.75 / 15.29 ps</td>
+                    <td class="spec-note">simulation</td>
+                  </tr>
+                  <tr>
+                    <td>R<sub>N</sub> / R<sub>P</sub></td>
+                    <td class="spec-value">212 / 232 Ω</td>
+                    <td class="spec-note">fitted to simulated delays</td>
+                  </tr>
+                  <tr>
+                    <td>W<sub>p</sub> / W<sub>n</sub></td>
+                    <td class="spec-value">2.5</td>
+                    <td class="spec-note">W<sub>p</sub> = 80, W<sub>n</sub> = 32</td>
+                  </tr>
+                  <tr>
+                    <td>NM<sub>H</sub> / NM<sub>L</sub></td>
+                    <td class="spec-value">333.9 / 335.3 mV</td>
+                    <td class="spec-note">schematic</td>
+                  </tr>
+                  <tr>
+                    <td>NM<sub>H</sub> / NM<sub>L</sub></td>
+                    <td class="spec-value">346.7 / 338.7 mV</td>
+                    <td class="spec-note">after layout</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side column: project facts and a table of contents that
+             follows the reader (section 4 of js/main.js). -->
+        <aside class="article-aside" aria-label="Project details">
+          <section class="facts-panel" aria-labelledby="facts-title">
+            <h2 class="aside-title" id="facts-title">Project</h2>
+            <dl class="facts">
+              <div>
+                <dt>Context</dt>
+                <dd>ECE1388 project, University of Toronto</dd>
+              </div>
+              <div>
+                <dt>Verification</dt>
+                <dd>Calibre DRC and LVS clean</dd>
+              </div>
+              <div>
+                <dt>Sizing</dt>
+                <dd>W<sub>p</sub> / W<sub>n</sub> = 80 / 32 = 2.5</dd>
+              </div>
+              <div>
+                <dt>Layout</dt>
+                <dd>Four fingers</dd>
+              </div>
+              <div>
+                <dt>Scope</dt>
+                <dd>Simulation and physical verification</dd>
+              </div>
+            </dl>
+          </section>
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 class="aside-title" id="toc-title">On this page</h2>
+            <ol class="toc-list">
+              <li><a href="#device-characterization">Device characterization</a></li>
+              <li><a href="#delay-model">Delay model</a></li>
+              <li><a href="#sizing">Sizing</a></li>
+              <li><a href="#layout-and-verification">Layout and verification</a></li>
+              <li><a href="#results">Results</a></li>
+              <li><a href="#key-figures">Key figures</a></li>
+            </ol>
+          </nav>
+        </aside>
+      </div>
+
+    </article>

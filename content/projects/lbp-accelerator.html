@@ -1,0 +1,199 @@
+---
+title: "Hardware-Accelerated LBP Facial Recognition System"
+short: "LBP hardware accelerator"
+description: "Undergraduate VLSI design project: Verilog modules for a Local Binary Pattern face recognizer."
+weight: 6
+---
+    <article>
+
+      <header class="page-header article-header container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#projects">Projects</a></li>
+          </ol>
+        </nav>
+        <h1 class="article-title">
+          Hardware-Accelerated LBP Facial Recognition System
+        </h1>
+        <div class="article-meta">
+          <span>Undergraduate VLSI design project</span>
+          <ul class="tag-list" aria-label="Topics"><li class="tag">Verilog</li><li class="tag">RTL</li><li class="tag">VLSI</li></ul>
+        </div>
+      </header>
+
+      <div class="article-layout container">
+        <div class="article-body">
+          <figure class="article-figure">
+            <div class="figure-plate figure-plate-image" style="view-transition-name: project-figure-lbp-accelerator">
+              <img src="../assets/projects/lbp-system.jpg" alt="Block diagram of the system: a controller drives CLBP, HCU, DCU and the comparator; multiplexers connect them to the gray-pixel RAM, LBP RAM, training and prediction histogram RAMs and the ID RAM." width="1400" height="734">
+            </div>
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span> The system, from my
+              slides: the controller, CLBP, HCU, DCU and comparator, and the RAMs
+              they share through multiplexers.
+            </figcaption>
+          </figure>
+
+          <div class="prose">
+            <p class="lead">
+              Local Binary Patterns recognize a face by its texture. Within a
+              recognition architecture provided by the course, I implemented the
+              CLBP, HCU, DCU, comparator and controller modules in Verilog and
+              integrated them at the top level.
+            </p>
+
+            <h2 id="how-it-works">How it works</h2>
+            <p>
+              CLBP computes a texture code for each pixel, HCU builds histograms of
+              those codes, DCU measures the distance to each stored reference
+              histogram, and the comparator picks the closest. A mode signal
+              switches between training and prediction.
+            </p>
+
+            <h2 id="design-notes">Design notes</h2>
+            <p>
+              The intermediate sum is accumulated in a register so that RAM is not
+              read repeatedly; I did not measure how much this saved. The critical
+              path was in the HCU.
+            </p>
+
+            <h2 id="results">Results</h2>
+            <p>
+              Synthesized in Synopsys Design Compiler on a 16 nm FinFET library, the
+              reported synthesis snapshot met a 2.0 ns clock target with +0.34 ns of
+              slack, at a total cell area of 9,791 µm². The design passed Synopsys
+              VCS SDF gate-level simulation at 500 MHz, with 82.4% Superlint
+              coverage.
+            </p>
+
+            <h2 id="caveats">Caveats</h2>
+            <p>
+              These numbers come from a reported synthesis snapshot, not from a
+              sign-off of the full system. A 2.0 ns clock is a 500 MHz target, but
+              each image takes many cycles, so image throughput would need its own
+              cycle count.
+            </p>
+
+            <h2 id="key-figures">Key figures</h2>
+            <div class="table-scroll" role="region" aria-labelledby="key-figures" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Setting</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Clock target</td>
+                    <td class="spec-value">2.0 ns</td>
+                    <td class="spec-note">500 MHz</td>
+                  </tr>
+                  <tr>
+                    <td>Timing slack</td>
+                    <td class="spec-value">+0.34 ns</td>
+                    <td class="spec-note">reported synthesis snapshot</td>
+                  </tr>
+                  <tr>
+                    <td>Total cell area</td>
+                    <td class="spec-value">9,791 µm²</td>
+                    <td class="spec-note">reported synthesis snapshot</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="interface">Interface</h2>
+            <div class="table-scroll" role="region" aria-labelledby="interface" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Signal</th><th scope="col">Width</th><th scope="col">Role</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Grayscale pixel</td>
+                    <td class="spec-value">8 bits</td>
+                    <td class="spec-note">read from RAM, 12-bit addresses</td>
+                  </tr>
+                  <tr>
+                    <td>Identity label</td>
+                    <td class="spec-value">5 bits</td>
+                    <td class="spec-note">result</td>
+                  </tr>
+                  <tr>
+                    <td>Minimum distance</td>
+                    <td class="spec-value">18 bits</td>
+                    <td class="spec-note">result</td>
+                  </tr>
+                  <tr>
+                    <td>Done</td>
+                    <td class="spec-value">1 bit</td>
+                    <td class="spec-note">result is ready</td>
+                  </tr>
+                  <tr>
+                    <td>Mode</td>
+                    <td class="spec-value"></td>
+                    <td class="spec-note">training or prediction</td>
+                  </tr>
+                  <tr>
+                    <td>gridX, gridY</td>
+                    <td class="spec-value">4 bits each</td>
+                    <td class="spec-note">control</td>
+                  </tr>
+                  <tr>
+                    <td>Training subject ID</td>
+                    <td class="spec-value">5 bits</td>
+                    <td class="spec-note">control</td>
+                  </tr>
+                  <tr>
+                    <td>Valid, enable</td>
+                    <td class="spec-value"></td>
+                    <td class="spec-note">control</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side column: project facts and a table of contents that
+             follows the reader (section 4 of js/main.js). -->
+        <aside class="article-aside" aria-label="Project details">
+          <section class="facts-panel" aria-labelledby="facts-title">
+            <h2 class="aside-title" id="facts-title">Project</h2>
+            <dl class="facts">
+              <div>
+                <dt>Role</dt>
+                <dd>Module design and integration</dd>
+              </div>
+              <div>
+                <dt>Context</dt>
+                <dd>Undergraduate VLSI design project</dd>
+              </div>
+              <div>
+                <dt>Language</dt>
+                <dd>Verilog RTL</dd>
+              </div>
+              <div>
+                <dt>Process</dt>
+                <dd>TSMC 16 nm FinFET</dd>
+              </div>
+              <div>
+                <dt>Tools</dt>
+                <dd>Design Compiler, VCS, Jasper Superlint</dd>
+              </div>
+            </dl>
+          </section>
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 class="aside-title" id="toc-title">On this page</h2>
+            <ol class="toc-list">
+              <li><a href="#how-it-works">How it works</a></li>
+              <li><a href="#design-notes">Design notes</a></li>
+              <li><a href="#results">Results</a></li>
+              <li><a href="#caveats">Caveats</a></li>
+              <li><a href="#key-figures">Key figures</a></li>
+              <li><a href="#interface">Interface</a></li>
+            </ol>
+          </nav>
+        </aside>
+      </div>
+
+    </article>

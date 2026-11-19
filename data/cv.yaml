@@ -1,0 +1,35 @@
+# Courses, education, honors and experience, as on the owner's CV. Each
+# row is shown as "date: role, organisation" in a bullet list; honors may
+# contain HTML (a link).
+
+courses:
+  - term: "2026 Fall"
+    list:
+      - { code: ECE1756, title: "Reconfigurable Computing and FPGA Architecture", url: "https://sgs.calendar.utoronto.ca/course/ece1756h" }
+      - { code: ECE1388, title: "VLSI Design Methodology", url: "https://sgs.calendar.utoronto.ca/course/ece1388h" }
+
+education:
+  - date: "2026 – 2028"
+    role: "MEng, Electrical & Computer Engineering"
+    org: "University of Toronto"
+  - date: "2022 – 2026"
+    role: "BSc, Electrical Engineering"
+    org: "National Cheng Kung University"
+
+honors:
+  - '2nd Place and Tainan City Government Special Award, <a href="https://2025kiborpc.ncku.edu.tw/">Kibo Robot Programming Challenge (6th, Taiwan round)</a>, Taiwan Space Agency, 2025'
+  - "NCKU EE Alumni Scholarship, five semesters (2022 Spring, 2023 Fall, 2024 Spring, 2024 Fall, 2025 Fall)"
+
+experience:
+  - date: "2026"
+    role: "Research Assistant"
+    org: "Research Center for Information Technology Innovation, Academia Sinica"
+  - date: "2026"
+    role: "Manufacturing Process Improvement Intern"
+    org: "ASML"
+  - date: "2025"
+    role: "Process Integration Development Intern"
+    org: "TSMC"
+  - date: "2025 – 2026"
+    role: "Research Assistant"
+    org: "NCKU AI System Lab"

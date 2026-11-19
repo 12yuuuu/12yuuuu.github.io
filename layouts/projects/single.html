@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{ .Content }}
+
+{{- /* Previous / next, in the order given by "weight" in the front matter.
+       The first page links back to the home list, and so does the last. */}}
+{{- $pages := where site.RegularPages "Section" "projects" }}
+{{- $prev := $pages.Prev . }}{{ $next := $pages.Next . }}
+    <nav class="pager" aria-label="More pages">
+{{- with $next }}
+      <a class="pager-link pager-prev" href="{{ .File.ContentBaseName }}.html">
+        <span class="pager-label">← Previous</span>
+        <span class="pager-title">{{ .Params.short }}</span>
+      </a>
+{{- else }}
+      <a class="pager-link pager-prev" href="../index.html#publications">
+        <span class="pager-label">← Back to</span>
+        <span class="pager-title">Home</span>
+      </a>
+{{- end }}
+{{- with $prev }}
+      <a class="pager-link pager-next" href="{{ .File.ContentBaseName }}.html">
+        <span class="pager-label">Next →</span>
+        <span class="pager-title">{{ .Params.short }}</span>
+      </a>
+{{- else }}
+      <a class="pager-link pager-next" href="../index.html#projects">
+        <span class="pager-label">Back to →</span>
+        <span class="pager-title">Home</span>
+      </a>
+{{- end }}
+    </nav>
+{{- /* Extra scripts a page asks for in its front matter (scripts: [js/rank-demo.js]). */}}
+{{- range .Params.scripts }}
+  <script src="../{{ . }}"></script>
+{{- end }}
+{{ end }}

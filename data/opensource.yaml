@@ -1,0 +1,25 @@
+# Open-source contributions, newest first: merged pull requests only,
+# as the owner asked on 18 November 2026.
+# Status as shown on GitHub; add an entry when a pull request is merged.
+
+- title: "PULP AXI: fix a W-channel deadlock in axi_burst_unwrap"
+  meta: 'pulp-platform/axi issue <a href="https://github.com/pulp-platform/axi/issues/448">#448</a> · PR <a href="https://github.com/pulp-platform/axi/pull/455">#455</a>, merged 11 Nov 2026 · SystemVerilog'
+  links:
+    - { label: pull request, url: "https://github.com/pulp-platform/axi/pull/455" }
+  text: >-
+    <p>The module allocated its write counters only after the downstream AW handshake, so a slave that holds AWREADY until it sees WVALID hangs forever; the fix allocates when the transaction is first presented. Validated with a local 9-test testbench on Verilator and Questa, 3 of which hung before the fix.</p>
+
+- title: "Google XLS: error instead of silently overriding an explicit codegen version"
+  meta: 'google/xls issue <a href="https://github.com/google/xls/issues/4554">#4554</a> · PR <a href="https://github.com/google/xls/pull/5163">#5163</a>, merged 27 Oct 2026 · C++'
+  links:
+    - { label: pull request, url: "https://github.com/google/xls/pull/5163" }
+  text: >-
+    <p>Codegen silently switched packages with proc-scoped channels to version 1.5 even when the user asked for 1.0 or 2.0. It now returns an explicit error instead, with 7 regression tests.</p>
+
+- title: "Project-MONAI: checkpoints that stopped loading under weights_only=True"
+  meta: 'Project-MONAI issue <a href="https://github.com/Project-MONAI/MONAI/issues/9025">#9025</a> · MONAI PR <a href="https://github.com/Project-MONAI/MONAI/pull/9143">#9143</a> and model-zoo PR <a href="https://github.com/Project-MONAI/model-zoo/pull/791">#791</a>, both merged · Python · Oct 2026'
+  links:
+    - { label: "MONAI pull request", url: "https://github.com/Project-MONAI/MONAI/pull/9143" }
+    - { label: "model-zoo pull request", url: "https://github.com/Project-MONAI/model-zoo/pull/791" }
+  text: >-
+    <p>Two DiNTS segmentation bundles stored their architecture-search results as NumPy arrays, which PyTorch 2.6’s safe loader refuses. MONAI’s topology decoding now accepts both tensors and lists, and the bundles save tensors, so the models load again under <code>torch.load(weights_only=True)</code>.</p>

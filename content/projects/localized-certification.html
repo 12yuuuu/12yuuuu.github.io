@@ -1,0 +1,264 @@
+---
+# Not built: the paper has no public link yet (18 November 2026).
+draft: true
+title: "Beyond Global Rank Statistics: Localized Certification for Quantile-Thresholded Decision Systems"
+short: "Localized certification"
+description: "Second-author manuscript under review: certifying quantile-thresholded decisions with a local measure at the operating point."
+weight: 2
+scripts: [js/rank-demo.js]
+---
+    <article>
+
+      <header class="page-header article-header container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.html#publications">Publications</a></li>
+          </ol>
+        </nav>
+        <h1 class="article-title">
+          Beyond Global Rank Statistics: Localized Certification for Quantile-Thresholded Decision Systems
+        </h1>
+        <div class="article-meta">
+          <span>Second author, under review</span>
+          <ul class="tag-list" aria-label="Topics"><li class="tag">Ranking</li><li class="tag">Certification</li><li class="tag">Robustness</li></ul>
+        </div>
+      </header>
+
+      <div class="article-layout container">
+        <div class="article-body">
+          <figure class="article-figure">
+            <div class="figure-plate" style="view-transition-name: project-figure-localized-certification">
+              <svg viewBox="0 0 800 330" role="img" aria-labelledby="figure-title">
+                <title id="figure-title">Illustration of ranks moving under a small perturbation, where only items near the threshold cross it, beside a bar chart of R² for predicting churn in the small-perturbation regime (churn below 0.15): 0.655 for the global statistic, 0.968 for the local one.</title>
+                <rect class="fig-region" x="40" y="64" width="84" height="186"/>
+                <path class="fig-line fig-line-soft" d="M106 64 L106 250"/>
+                <path class="fig-line fig-line-soft" d="M142 64 L142 250"/>
+                <path class="fig-line" d="M106 46 L106 40 L142 40 L142 46"/>
+                <text class="fig-label fig-small" x="124" y="30" text-anchor="middle">only these can change side</text>
+                <path class="fig-line fig-line-soft" d="M300 82 L332 82"/>
+                <circle class="fig-box fig-box-soft" cx="300" cy="82" r="5"/>
+                <circle class="fig-soft" cx="332" cy="82" r="5"/>
+                <path class="fig-line" d="M112 104 L138 104"/>
+                <circle class="fig-box" cx="112" cy="104" r="5"/>
+                <circle class="fig-solid" cx="138" cy="104" r="5"/>
+                <path class="fig-line fig-line-soft" d="M420 126 L396 126"/>
+                <circle class="fig-box fig-box-soft" cx="420" cy="126" r="5"/>
+                <circle class="fig-soft" cx="396" cy="126" r="5"/>
+                <path class="fig-line" d="M140 148 L114 148"/>
+                <circle class="fig-box" cx="140" cy="148" r="5"/>
+                <circle class="fig-solid" cx="114" cy="148" r="5"/>
+                <path class="fig-line fig-line-soft" d="M62 170 L88 170"/>
+                <circle class="fig-box fig-box-soft" cx="62" cy="170" r="5"/>
+                <circle class="fig-soft" cx="88" cy="170" r="5"/>
+                <path class="fig-line fig-line-soft" d="M226 192 L252 192"/>
+                <circle class="fig-box fig-box-soft" cx="226" cy="192" r="5"/>
+                <circle class="fig-soft" cx="252" cy="192" r="5"/>
+                <path class="fig-line" d="M132 214 L117 214"/>
+                <circle class="fig-box" cx="132" cy="214" r="5"/>
+                <circle class="fig-solid" cx="117" cy="214" r="5"/>
+                <path class="fig-line fig-line-soft" d="M364 236 L352 236"/>
+                <circle class="fig-box fig-box-soft" cx="364" cy="236" r="5"/>
+                <circle class="fig-soft" cx="352" cy="236" r="5"/>
+                <path class="fig-line" d="M40 250 L480 250"/>
+                <path class="fig-line" d="M124 56 L124 250"/>
+                <text class="fig-label fig-small fig-muted" x="82" y="272" text-anchor="middle">selected</text>
+                <text class="fig-label fig-math" x="124" y="273" text-anchor="middle">β</text>
+                <text class="fig-label fig-small fig-muted" x="480" y="272" text-anchor="end">rank</text>
+                <path class="fig-line fig-line-soft" d="M40 284 L40 290 L480 290 L480 284"/>
+                <text class="fig-label fig-small fig-muted" x="260" y="312" text-anchor="middle">a global statistic averages over every rank</text>
+                <text class="fig-label fig-strong" x="572" y="98">R² for predicting churn</text>
+                <text class="fig-label fig-small fig-muted" x="572" y="130">Global rank statistic</text>
+                <path class="fig-soft" d="M572 138 H679.4 A4 4 0 0 1 683.4 142 V154 A4 4 0 0 1 679.4 158 H572 Z"/>
+                <text class="fig-label" x="691.4" y="153">0.655</text>
+                <text class="fig-label fig-small fig-muted" x="572" y="192">Local displacement scale</text>
+                <path class="fig-solid" d="M572 200 H732.6 A4 4 0 0 1 736.6 204 V216 A4 4 0 0 1 732.6 220 H572 Z"/>
+                <text class="fig-label" x="744.6" y="215">0.968</text>
+                <text class="fig-label fig-small fig-muted" x="572" y="264">Small perturbations, churn &lt; 0.15</text>
+              </svg>
+            </div>
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span> Left: a global statistic
+              averages over every rank, but under a small perturbation only items
+              near the operating quantile β can change side. Hollow dots are ranks
+              before a perturbation, filled dots after. Right: how well each measure
+              predicts the churn of the selected set, in the small-perturbation
+              regime.
+            </figcaption>
+          </figure>
+
+          <div class="prose">
+            <p class="lead">
+              Systems that threshold a score at a quantile, from CFAR detection to
+              selective classification, are usually certified with global rank
+              statistics. Those average over the whole score distribution, but the
+              threshold acts at a single point.
+            </p>
+
+            <h2 id="the-problem">The problem</h2>
+            <p>
+              As a result, the certificate can look nearly perfect while the
+              decisions change underneath it. In one input-noise case at a 5%
+              budget, the Spearman rank correlation stays at 0.9885, yet the
+              selected set’s Jaccard churn is 0.628: about 46% of the selected
+              inputs are replaced.
+            </p>
+
+            <h2 id="the-idea">The idea</h2>
+            <p>
+              An input’s decision changes only when it crosses the threshold. So
+              instead of rank agreement across all inputs, the paper measures how
+              far ranks move near the threshold: the standard deviation of rank
+              displacement in a window around the operating quantile, with a
+              half-width of 0.02 in normalized rank.
+            </p>
+
+            <h2 id="results">Results</h2>
+            <p>
+              The study spans 3,570 operating points across thirteen perturbation
+              families. In the small-perturbation regime, where churn stays below
+              0.15, the local displacement scale predicts selected-set churn with R²
+              = 0.968, against 0.655 for the global control. The advantage is
+              largest when the budget is tight.
+            </p>
+
+            <h2 id="caveats">Caveats</h2>
+            <p>
+              This is an empirical fit with a first-order approximation, not a
+              universal law. It assumes small perturbations and regular local
+              behavior, and the advantage shrinks for wider budgets and once churn
+              saturates. It does not replace the usual checks either: accuracy and
+              task quality still need testing, and the actual selected-set overlap
+              should be measured at the intended budget.
+            </p>
+
+            <h2 id="key-figures">Key figures</h2>
+            <div class="table-scroll" role="region" aria-labelledby="key-figures" tabindex="0">
+              <table class="spec-table">
+                <thead>
+                  <tr><th scope="col">Measure</th><th scope="col">Value</th><th scope="col">Setting</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>R², local displacement scale → churn</td>
+                    <td class="spec-value">0.968</td>
+                    <td class="spec-note">small-perturbation regime, churn below 0.15</td>
+                  </tr>
+                  <tr>
+                    <td>R², global rank statistic → churn</td>
+                    <td class="spec-value">0.655</td>
+                    <td class="spec-note">same regime</td>
+                  </tr>
+                  <tr>
+                    <td>Operating points</td>
+                    <td class="spec-value">3,570</td>
+                    <td class="spec-note">13 perturbation families</td>
+                  </tr>
+                  <tr>
+                    <td>Spearman rank correlation</td>
+                    <td class="spec-value">0.9885</td>
+                    <td class="spec-note">one input-noise case, 5% budget</td>
+                  </tr>
+                  <tr>
+                    <td>Jaccard churn of the selected set</td>
+                    <td class="spec-value">0.628</td>
+                    <td class="spec-note">same case; churn is 1 − Jaccard overlap</td>
+                  </tr>
+                  <tr>
+                    <td>Local window half-width</td>
+                    <td class="spec-value">0.02</td>
+                    <td class="spec-note">normalized rank</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Interactive toy, drawn by js/rank-demo.js. Hidden without
+                 JavaScript; the text above already explains the idea. -->
+            <section class="rank-demo" aria-labelledby="try-it">
+              <h2 id="try-it">Try it</h2>
+              <p>
+                A toy version of the problem, with 200 made-up scores rather
+                than data from the paper. Add noise to the scores and watch the
+                two numbers: rank correlation barely moves while the selected
+                set changes.
+              </p>
+
+              <div class="demo-controls">
+                <div class="demo-control">
+                  <label for="demo-noise">Noise added to the scores</label>
+                  <input class="demo-range" id="demo-noise" type="range" min="0" max="100" value="25">
+                </div>
+                <div class="demo-control">
+                  <fieldset>
+                    <legend>Budget</legend>
+                    <label class="demo-option"><input type="radio" name="demo-budget" value="0.05" checked><span>5%</span></label>
+                    <label class="demo-option"><input type="radio" name="demo-budget" value="0.2"><span>20%</span></label>
+                    <label class="demo-option"><input type="radio" name="demo-budget" value="0.5"><span>50%</span></label>
+                  </fieldset>
+                </div>
+              </div>
+
+              <figure>
+                <div class="figure-plate">
+                  <svg class="demo-chart" id="demo-chart" viewBox="0 0 800 220" role="img" aria-labelledby="demo-chart-title">
+                    <title id="demo-chart-title">Each line joins an item’s rank before and after the noise; highlighted lines changed side of the threshold.</title>
+                  </svg>
+                </div>
+
+                <dl class="demo-readout" aria-live="polite">
+                  <div><dt>Spearman rank correlation</dt><dd id="demo-spearman">–</dd></div>
+                  <div><dt>Selected-set churn</dt><dd id="demo-churn">–</dd></div>
+                </dl>
+
+                <figcaption class="figure-caption">
+                  <span class="figure-number">Figure 2.</span>
+                  Toy data, not from the paper. Top row: ranks before the noise;
+                  bottom row: after. The shaded part is the selected set, the
+                  lowest-scoring items up to the budget. Lines that change side are
+                  highlighted. Churn is 1 − Jaccard overlap of the two selected sets.
+                </figcaption>
+              </figure>
+            </section>
+          </div>
+        </div>
+
+        <!-- Side column: project facts and a table of contents that
+             follows the reader (section 4 of js/main.js). -->
+        <aside class="article-aside" aria-label="Project details">
+          <section class="facts-panel" aria-labelledby="facts-title">
+            <h2 class="aside-title" id="facts-title">Project</h2>
+            <dl class="facts">
+              <div>
+                <dt>Role</dt>
+                <dd>Second author</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Under review</dd>
+              </div>
+              <div>
+                <dt>Where</dt>
+                <dd>Academia Sinica</dd>
+              </div>
+              <div>
+                <dt>Scale</dt>
+                <dd>3,570 operating points<br>13 perturbation families</dd>
+              </div>
+            </dl>
+          </section>
+          <nav class="toc" aria-labelledby="toc-title">
+            <h2 class="aside-title" id="toc-title">On this page</h2>
+            <ol class="toc-list">
+              <li><a href="#the-problem">The problem</a></li>
+              <li><a href="#the-idea">The idea</a></li>
+              <li><a href="#results">Results</a></li>
+              <li><a href="#caveats">Caveats</a></li>
+              <li><a href="#key-figures">Key figures</a></li>
+              <li><a href="#try-it">Try it</a></li>
+            </ol>
+          </nav>
+        </aside>
+      </div>
+
+    </article>

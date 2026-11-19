@@ -1,0 +1,75 @@
+# Projects, hardware first, then software. Every number comes from the
+# owner's own records (her experience bank, reports and repositories).
+# Work still in progress says so in its meta line and reports only what
+# has been measured. Set "hidden: true" to keep an entry out of the page.
+
+- title: "MX Precision Lab: Error-Budgeted MXFP4 Accumulator Generator"
+  meta: "ISSCC 2027 Code-a-Chip · GF180MCU 180 nm · Fall 2026"
+  links:
+    - { label: code, url: "https://github.com/12yuuuu/mxfp4_accumulator" }
+    - { label: "submission (PR #215, merged)", url: "https://github.com/sscs-ose/sscs-ose-code-a-chip.github.io/pull/215" }
+  figure:
+    src: assets/projects/mxfp4-core.png
+    alt: "Block diagram of the MXFP4 core: scale decode and exponent state, four decoders, exact dot32 blocks, align and RNE control, and the W-bit accumulator, with the optional inexact flag."
+  text: >-
+    <p>A generator that takes a linear layer and an accumulation-error budget and picks the smallest GF180 dot-product core that meets it; across 14 workloads a fixed F4 accumulator misses the budget in 29 of 84 workload × budget cells and over-provisions in 32. The pipelined SystemVerilog accumulator was verified over all 129,038 RNE cases with 0 mismatches, and a C++17 cycle-accurate model matched the RTL over 64 configurations. Seven candidates were placed and routed in Yosys and LibreLane/OpenROAD with 0 DRC/LVS errors; the F2 core cut cell area 14.2% against F24.</p>
+
+- title: "AXI4 CDC Bridge and UVM Verification"
+  meta: "SystemVerilog, UVM, SVA · Xcelium, Quartus, Verilator, Questa · Fall 2026"
+  links:
+    - { label: code, url: "https://github.com/12yuuuu/axi-cdc-uvm" }
+  figure:
+    src: assets/projects/axi-cdc-uvm-testbench.png
+    alt: "UVM testbench diagram: a pipelined AXI4 master and a reactive memory slave on either side of the axi_cdc_ram DUT, with SVA handshake checks, monitors, functional coverage and a scoreboard."
+  text: >-
+    <p>A block-RAM asynchronous FIFO for FPGAs: on Arria 10 a 74-bit × 16 FIFO used 22 instead of 501 ALMs and its Fmax rose from 396 to 605 MHz. A UVM environment with 85 SVA checks and functional coverage passed 269/269 Xcelium runs, covered 146/146 bins and caught 5/5 injected faults. The Arria 10 post-fit netlist matched the RTL in 11/11 tests with CDC timing met in 4 corners.</p>
+
+- title: "Image Convolution Engine and Pipelined Exponential Unit on FPGA"
+  meta: "ECE1756, Prof. Vaughn Betz · Intel Agilex 7 · Fall 2026"
+  figure:
+    src: assets/projects/conv-sobel.jpg
+    alt: "Illustration of a 3×3 convolution: a Sobel Gx filter slides over the source pixels to produce each destination pixel."
+  text: >-
+    <p>A streaming 3×3 convolution engine (1 pixel per cycle, M20K line buffers, back-pressure) iterated through 11 versions from 12.5 to 72.9 TOPS full-device, with 4,510 copies running at the 958.77 MHz DSP limit. At an estimated 546 GOPS/W that is 126× the throughput and 208× the efficiency of the course-provided RTX 3070 baseline. In the first assignment I pipelined a Horner exponential unit to 18 stages, raising Fmax from 64.46 to 853.97 MHz.</p>
+
+- title: "LBP Accelerator and 32-bit RISC-V CPU"
+  url: projects/lbp-accelerator.html
+  meta: "Introduction to VLSI CAD, NCKU · TSMC 16 nm · Spring 2024"
+  links:
+    - { label: details, url: projects/lbp-accelerator.html }
+    - { label: "CPU code", url: "https://github.com/12yuuuu/CPU" }
+  figure:
+    src: assets/projects/lbp-system.jpg
+    alt: "Block diagram of the LBP recognizer: controller, CLBP, HCU, DCU and comparator around RAMs for pixels, LBP codes, histograms and identities."
+  text: >-
+    <p>A Verilog accelerator for Local Binary Pattern feature extraction, with SRAM access reduced by sequential register accumulation: DC synthesis on 16 nm at 500 MHz (0.34 ns slack, 9,791 µm²), VCS gate-level simulation passed, 82.4% Superlint coverage. A single-cycle 32-bit RISC-V CPU with a custom ALU, branch logic and load filter, verified in ModelSim.</p>
+
+- title: "LogicMin: Boolean Logic Minimization and Verification"
+  meta: "C++17 · exact Quine–McCluskey with branch-and-bound covering"
+  links:
+    - { label: code, url: "https://github.com/12yuuuu/logicmin-cpp" }
+  figure:
+    src: assets/projects/logicmin-kmap.png
+    alt: "Karnaugh map of a four-variable function with don’t-cares, its prime implicants and the exact minimum cover f = b'c + a'bd + ac found by branch and bound."
+  text: >-
+    <p>An exact two-level minimizer for single-output functions with don’t-cares: Quine–McCluskey prime implicants, then an exact branch-and-bound cover. Every output is re-checked against the specification and minimality is cross-checked against a brute-force reference; 31 tests (about 103,000 checks) run in CI on Linux and macOS. Rebuilt from a NCKU logic-design assignment.</p>
+
+- title: "Big Two Card Game"
+  meta: "C++ / Qt 5 · NCKU"
+  links:
+    - { label: code, url: "https://github.com/12yuuuu/big-two-cpp" }
+  figure:
+    src: assets/projects/big-two-architecture.png
+    alt: "Architecture of the Big Two game: a Mainwindow QGraphicsView holding the rule, hint, turn and scoring engines, with Player, Card, CardItem and Button classes."
+  text: >-
+    <p>A Big Two card game with a hand-written rules engine for six hand types (including A2345, 23456 and illegal straights), comparison and bomb rules, 2–4 player turns, a hint that finds the smallest hand beating the last one, and multi-round scoring to 50. Built on Qt Graphics View without a game framework.</p>
+
+- title: "Doodle Jump"
+  meta: "C++17 / Qt 5 · NCKU · Spring 2023"
+  links:
+    - { label: code, url: "https://github.com/12yuuuu/doodle-jump-cpp" }
+  figure:
+    src: assets/projects/doodle-jump-camera.png
+    alt: "Camera lock and endless world: below the half-screen line the player rises; above it the player is locked and the platforms scroll down, with new platforms spawned above the topmost."
+  text: >-
+    <p>A Doodle Jump remake without a game engine (about 1,300 lines, 8 classes): the update loop, jump physics, camera, collisions, level generator, animation and sound are all hand-written. A headless test drives the level generator over 50 seeds × 60,000 px to check platform spacing and reachability.</p>

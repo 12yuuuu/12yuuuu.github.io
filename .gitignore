@@ -1,0 +1,11 @@
+# Hugo output and caches
+public/
+resources/_gen/
+.hugo_build.lock
+
+# Kept on this computer only: the blog (not built, not published) and
+# personal notes.
+_local/
+dp-complexity.html
+
+.DS_Store

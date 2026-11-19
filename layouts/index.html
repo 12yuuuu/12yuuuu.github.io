@@ -1,0 +1,91 @@
+{{ define "main" }}
+{{- $me := "Kuan-Yu Liu" }}
+      <!-- HEADER: name, roles, email, links; portrait on the right -->
+      <div class="header-section">
+        <div class="header-text">
+          <p><span class="large-name">{{ site.Params.fullname }}</span></p>
+          <p>{{ range $i, $r := site.Params.roles }}{{ if $i }}<br>{{ end }}{{ $r }}{{ end }}</p>
+          <p>Email: <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+          <p class="header-links"><a href="{{ site.Params.github }}">GitHub</a> / <a href="{{ site.Params.linkedin }}">LinkedIn</a></p>
+        </div>
+        <figure class="avatar"><img src="assets/profile/ana.jpg" alt="Ana Liu" width="570" height="760"></figure>
+      </div>
+
+      <h2 id="about-me">About Me</h2>
+      <div class="intro-box">
+        <p>I’m Ana Liu (Kuan-Yu Liu), a master’s student in Electrical &amp; Computer Engineering at the University of Toronto.</p>
+        <p>My courses:</p>
+        <ul>
+{{- range hugo.Data.cv.courses }}
+          <li><strong>{{ .term }}:</strong>
+            <ul>
+{{- range .list }}
+              <li><a href="{{ .url }}">{{ .code }} {{ .title }}</a></li>
+{{- end }}
+            </ul>
+          </li>
+{{- end }}
+        </ul>
+      </div>
+
+      <!-- PUBLICATIONS: data/publications.yaml, as a bullet list -->
+      <h2 id="publications">Publications</h2>
+      <ul class="publication-bullets">
+{{- range hugo.Data.publications }}{{ if not .hidden }}
+        <li>
+          <strong class="bullet-title">{{ .title }}</strong><br>
+          <span class="authors">{{ range $i, $a := .authors }}{{ if $i }}, {{ end }}{{ if eq $a $me }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end }}{{ end }}</span>
+          <br><em class="venue">{{ .meta | safeHTML }}</em>
+          <br><span class="bullet-summary">{{ .summary }}</span>
+        </li>
+{{- end }}{{ end }}
+      </ul>
+
+      <!-- PROJECTS: data/projects.yaml -->
+      <h2 id="projects">Projects</h2>
+      <div class="publication-list">
+{{- range hugo.Data.projects }}{{ if not .hidden }}
+{{ partial "entry.html" (dict "e" . "me" $me) }}
+{{- end }}{{ end }}
+      </div>
+
+      <!-- OPEN SOURCE: data/opensource.yaml -->
+      <h2 id="open-source">Open Source</h2>
+      <div class="publication-list">
+{{- range hugo.Data.opensource }}{{ if not .hidden }}
+{{ partial "entry.html" (dict "e" . "me" $me) }}
+{{- end }}{{ end }}
+      </div>
+
+      <!-- EDUCATION, EXPERIENCE, HONORS: data/cv.yaml -->
+      <h2 id="education">Education</h2>
+      <ul>
+{{- range hugo.Data.cv.education }}
+        <li><strong>{{ .date }}:</strong> {{ .role }}, {{ .org }}</li>
+{{- end }}
+      </ul>
+
+      <h2 id="experience">Experience</h2>
+      <ul>
+{{- range hugo.Data.cv.experience }}
+        <li><strong>{{ .date }}:</strong> {{ .role }}, {{ .org }}</li>
+{{- end }}
+      </ul>
+
+{{- with hugo.Data.cv.honors }}
+      <h2 id="honors">Honors</h2>
+      <ul>
+{{- range . }}
+        <li>{{ . | safeHTML }}</li>
+{{- end }}
+      </ul>
+{{- end }}
+
+      <!-- SERVICE: data/service.yaml -->
+      <h2 id="service">Service</h2>
+      <ul>
+{{- range hugo.Data.service }}
+        <li><strong>{{ .role }}:</strong> {{ .text | safeHTML }}</li>
+{{- end }}
+      </ul>
+{{ end }}

@@ -1,0 +1,33 @@
+# Hugo configuration for 12yuuuu.github.io.
+# The site is built by GitHub Actions (.github/workflows/hugo.yml) and
+# published to the gh-pages branch; nothing in public/ is committed.
+
+baseURL = "https://12yuuuu.github.io/"
+title = "Ana Liu"
+locale = "en"
+
+# Keep the same addresses the hand-written site had (about.html,
+# projects/cmos-inverter.html), so links and relative paths still work.
+uglyURLs = true
+
+# Only the home page, the project pages and 404 are built. No section
+# lists, tag pages or feeds.
+disableKinds = ["taxonomy", "term", "RSS", "section"]
+enableRobotsTXT = true
+
+[markup.goldmark.renderer]
+  unsafe = true   # content files are HTML
+
+[params]
+  description = "Ana Liu is a master's student in Electrical & Computer Engineering at the University of Toronto: RTL and FPGA design, custom circuit layout, hardware for machine learning, and open-source hardware contributions."
+  # The name and the two role lines at the top of the home page.
+  fullname = "Ana Liu"
+  roles = ["MEng Student @ University of Toronto ECE"]
+  email = "ana.liu@mail.utoronto.ca"
+  github = "https://github.com/12yuuuu"
+  linkedin = "https://linkedin.com/in/anastasialiu"
+
+# The project pages are written as HTML files in content/projects, which
+# Hugo 0.158+ refuses unless the type is allowed here.
+[security]
+  allowContent = ['^text/markdown$', '^text/html$']
