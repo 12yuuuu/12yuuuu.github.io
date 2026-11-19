@@ -1,0 +1,836 @@
+/* ============================================================
+   FONTS
+   Absans, by Collletttivo, is used for the name, headings and entry
+   titles. It is released under the SIL Open Font License
+   (assets/fonts/OFL.txt), which allows hosting it with the site.
+   Everything else uses the operating system's own interface font.
+   ============================================================ */
+@font-face {
+  font-family: "Absans";
+  src: url("../assets/fonts/Absans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN TOKENS
+   A plain academic home page: one 900px column, 12pt text. The
+   colours are University of Toronto blue on white, silver-white for
+   plates and bands, and a deep navy in dark mode. Each colour is
+   written once as light-dark(light, dark).
+   ============================================================ */
+:root {
+  color-scheme: light dark;
+
+  --color-bg:        light-dark(#ffffff, #0e1420);
+  --color-band:      light-dark(#f4f6f9, #121a28);   /* silver-white: thumbnails, stripes, code */
+  --color-text:      light-dark(#222222, #e3e9f1);
+  --color-heading:   light-dark(#002a5c, #ffffff);   /* University of Toronto blue */
+  --color-accent:    light-dark(#002a5c, #8fb6ec);   /* links */
+  --color-on-accent: light-dark(#ffffff, #0e1420);
+  --color-muted:     light-dark(#444444, #b4bfcc);   /* roles, authors */
+  --color-quiet:     light-dark(#555555, #a4b0bf);   /* abstracts */
+  --color-faint:     light-dark(#888888, #8c99aa);   /* small notes */
+  --color-rule:      light-dark(#eaecef, #26324a);   /* heading underline, hr */
+  --color-border:    light-dark(#cccccc, #3a475c);   /* table and code borders */
+  --color-row-hover: light-dark(rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 0.04));
+  --color-shadow:    light-dark(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.55));
+  --color-surface:   light-dark(#ffffff, #161f2e);   /* boxes in figures */
+  --color-soft:      light-dark(#9fb3cc, #4a6a99);   /* de-emphasised figure marks */
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+               "Noto Sans TC", "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Absans", var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+
+/* ============================================================
+   BASE
+   A small reset and the base type, written out by hand so no CSS
+   framework is needed.
+   ============================================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  font-size: 12pt;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text);
+  background: var(--color-bg);
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;             /* Absans has one weight */
+  line-height: 1.2;
+  color: var(--color-heading);
+}
+
+h1 { font-size: 1.8rem; }
+
+h2 {
+  font-size: 1.6rem;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.2rem; }
+
+p {
+  margin: 0 0 0.6rem;
+}
+
+ul, ol {
+  margin: 0 0 1rem;
+  padding-left: 2rem;
+}
+
+ul > li {
+  list-style-position: outside;
+  margin-left: 1em;
+}
+
+.container > ul,
+.container > ol { padding-left: 0; }
+
+ul ul { padding-left: 0.75em; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+strong { font-weight: 700; }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-style: none;
+}
+
+figure { margin: 0 0 1rem; }
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+small { font-size: 1rem; }
+
+code {
+  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  color: var(--color-text);
+  background: var(--color-band);
+  border: 1px solid var(--color-border);
+  border-radius: 10%;
+}
+
+pre code { all: unset; }
+
+table {
+  width: 100%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+table th { font-weight: 700; }
+
+table tbody tr:nth-child(2n) { background: var(--color-band); }
+
+blockquote {
+  margin: 1rem 0;
+  padding: 8px;
+  border-left: 4px solid;
+  font-style: italic;
+}
+
+sub, sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard readers; appears only when focused. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  z-index: 100;
+}
+
+.skip-link:focus { top: 1rem; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CONTAINER
+   One 900px column.
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* The detail pages wrap their parts in .container too; nested ones
+   add no second gutter. */
+.container .container {
+  max-width: none;
+  padding: 0;
+}
+
+/* ============================================================
+   HEADER: name, roles, links and the round portrait
+   ============================================================ */
+.header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2em;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.header-section .header-text { flex: 1; }
+
+.large-name {
+  display: block;
+  margin-bottom: 0.5em;
+  font-family: var(--font-display);
+  font-size: 2.5em;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-heading);
+}
+
+.header-section .header-text p {
+  margin: 0.2em 0;
+  font-size: 1.05em;
+  color: var(--color-muted);
+}
+
+.header-section .header-text p a { color: inherit; }
+
+.header-section .header-text p.header-links a { color: var(--color-accent); }
+
+.header-section .avatar {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.header-section .avatar img {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;     /* keeps the face in the circle */
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.intro-box {
+  margin-bottom: 2em;
+  text-align: justify;
+}
+
+.intro-box p {
+  margin-bottom: 1em;
+  text-align: justify;
+}
+
+.intro-box p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   PUBLICATION AND PROJECT ROWS
+   A thumbnail on the left (180px), then title, authors, venue, a row
+   of "/"-separated links and a short abstract.
+   ============================================================ */
+.publication-with-teaser {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 0.8em;
+  padding: 0.8em;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.publication-with-teaser:hover {
+  background-color: var(--color-row-hover);
+  box-shadow: 0 3px 10px var(--color-shadow);
+}
+
+.publication-teaser {
+  flex: 0 0 180px;
+  transition: transform 0.3s ease;
+}
+
+.teaser-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: var(--color-band);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: all 0.3s ease;
+}
+
+.publication-with-teaser:hover .teaser-container {
+  box-shadow: 0 4px 8px var(--color-shadow);
+  transform: translateY(-2px);
+}
+
+.teaser-container img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.publication-content { flex: 1; min-width: 0; }
+
+.publication-content .publication-meta { line-height: 1.5; }
+
+.publication-content .publication-title {
+  font-family: var(--font-display);
+  font-size: 1.1em;
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+.publication-content a.publication-title:hover { text-decoration: underline; }
+
+.publication-content .authors {
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.publication-content .authors strong { font-size: inherit; }
+
+.publication-content .venue { font-size: 0.9em; }
+
+.publication-content .publication-links { font-size: 0.9em; }
+
+.publication-content .publication-links a { text-decoration: none; }
+
+.publication-content .publication-links a:hover { text-decoration: underline; }
+
+.publication-content .publication-abstract {
+  margin-top: 0.4em;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: var(--color-quiet);
+}
+
+.publication-content .publication-abstract p { margin-bottom: 0.6em; }
+
+.publication-content .publication-abstract p:last-child { margin-bottom: 0; }
+
+/* Publications as a bullet list (no public links yet). */
+.publication-bullets li {
+  margin-bottom: 0.8em;
+  line-height: 1.5;
+}
+
+.publication-bullets .bullet-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1em;
+  color: var(--color-heading);
+}
+
+.publication-bullets .authors,
+.publication-bullets .venue,
+.publication-bullets .bullet-summary { font-size: 0.9em; }
+
+.publication-bullets .authors { color: var(--color-muted); }
+
+.publication-bullets .bullet-summary { color: var(--color-quiet); }
+
+/* ============================================================
+   DETAIL PAGES (content/projects/*.html)
+   The same column and type as the home page; the facts list sits
+   after the text instead of in a side column.
+   ============================================================ */
+.article-header { margin-top: 3em; }
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9em;
+}
+
+.breadcrumb li { margin: 0; }
+
+.breadcrumb li + li::before {
+  content: "/";
+  padding: 0 0.5em;
+  color: var(--color-faint);
+}
+
+.article-title { margin-top: 0; }
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4em 1em;
+  margin-bottom: 1.5em;
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li { margin: 0; }
+
+.tag {
+  padding: 0.05em 0.6em;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  font-size: 0.85em;
+  color: var(--color-faint);
+}
+
+.article-layout { margin-bottom: 2em; }
+
+.article-figure { margin: 0 0 1.5em; }
+
+.figure-plate {
+  padding: 1em;
+  border-radius: 6px;
+  background: var(--color-band);
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.figure-plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure-plate-image { padding: 0; }
+
+.figure-plate-image img { margin: 0 auto; }
+
+.figure-caption {
+  margin-top: 0.6em;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: var(--color-quiet);
+}
+
+.figure-number { font-weight: 700; }
+
+.prose .lead { font-size: 1.05em; }
+
+.table-scroll { overflow-x: auto; }
+
+.spec-value { white-space: nowrap; }
+
+.spec-note { color: var(--color-quiet); }
+
+.spec-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.table-note {
+  margin-top: -0.4rem;
+  font-size: 0.9em;
+  color: var(--color-quiet);
+}
+
+/* Facts about the project, after the text. The table of contents is
+   not needed on a page this short. */
+.article-aside { margin-top: 1.5em; }
+
+.article-aside .toc { display: none; }
+
+.aside-title { font-size: 1.4rem; border: 0; padding: 0; }
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3em 1.5em;
+  margin: 0 0 1rem;
+  font-size: 0.9em;
+}
+
+.facts > div { display: contents; }
+
+.facts dt {
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.facts dd { margin: 0; }
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 2em auto 1em;
+  font-size: 0.9em;
+}
+
+.pager-link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.1em;
+  max-width: 48%;
+}
+
+.pager-next { text-align: right; }
+
+.pager-label { color: var(--color-faint); }
+
+/* 404 */
+.notfound { margin-top: 3em; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer { margin-bottom: 3rem; }
+
+#footer .text-center { text-align: center; }
+
+#footer a {
+  margin: 0 0.45rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+#footer a:hover { text-decoration: underline; }
+
+#footer small { color: var(--color-text); }
+
+/* ============================================================
+   LIGHT / DARK BUTTON
+   There is no header bar, so the button sits on its own in the
+   top-right corner. Hidden until js/main.js runs.
+   ============================================================ */
+.theme-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 50;
+  display: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+
+.js .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .icon-sun { display: none; }
+
+.theme-toggle[aria-pressed="true"] .icon-moon { display: none; }
+.theme-toggle[aria-pressed="true"] .icon-sun  { display: block; }
+
+/* While the button switches colours (js/main.js), the whole page is
+   revealed by a growing circle. */
+.is-switching-theme::view-transition-old(root),
+.is-switching-theme::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.is-switching-theme * { view-transition-name: none !important; }
+
+/* ============================================================
+   FIGURES
+   The inline SVG drawings on the detail pages, coloured from the
+   tokens so they follow the theme.
+   ============================================================ */
+.fig-line {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fig-line-soft   { stroke: var(--color-soft); }
+.fig-line-dashed { stroke-dasharray: 5 6; }
+
+.fig-box {
+  fill: var(--color-surface);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.fig-box-dashed { stroke-dasharray: 5 6; }
+.fig-box-soft   { stroke: var(--color-soft); }
+.fig-solid      { fill: var(--color-accent); }
+.fig-soft       { fill: var(--color-soft); }
+
+.fig-region {
+  fill: var(--color-accent);
+  opacity: 0.1;
+}
+
+.fig-blank {
+  fill: var(--color-border);
+  opacity: 0.5;
+}
+
+.fig-label {
+  fill: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+}
+
+.fig-small    { font-size: 13.5px; }
+.fig-strong   { font-weight: 700; }
+.fig-muted    { fill: var(--color-quiet); }
+.fig-on-solid { fill: var(--color-on-accent); }
+
+.fig-math {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.fig-sub { font-size: 12px; }
+
+.fig-dot {
+  stroke: var(--color-band);
+  stroke-width: 2;
+}
+
+/* ============================================================
+   RANK DEMO (localized certification page)
+   A small interactive toy. Hidden without JavaScript.
+   ============================================================ */
+.rank-demo { display: none; }
+.js .rank-demo { display: block; }
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  align-items: end;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+.demo-control {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.demo-control label,
+.demo-control legend {
+  padding: 0;
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.demo-control fieldset {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.demo-range {
+  width: min(18rem, 70vw);
+  accent-color: var(--color-accent);
+}
+
+.demo-option { position: relative; }
+
+.demo-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.demo-option span {
+  display: block;
+  padding: 0.25rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.demo-option input:checked + span {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.demo-option input:focus-visible + span {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.demo-readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.5rem;
+  margin: 1rem 0;
+}
+
+.demo-readout dt {
+  font-size: 0.9em;
+  color: var(--color-muted);
+}
+
+.demo-readout dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-chart .demo-link {
+  stroke: var(--color-soft);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.demo-chart .demo-link.is-crossing {
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  opacity: 1;
+}
+
+/* ============================================================
+   RESPONSIVE (768px breakpoint)
+   ============================================================ */
+@media (max-width: 768px) {
+  .large-name { font-size: 1.6em; }
+
+  .header-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .header-section .avatar { order: -1; }
+
+  .header-section .avatar img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .header-section .header-text { text-align: center; }
+
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+
+  .publication-with-teaser {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.8em;
+  }
+
+  .publication-teaser {
+    flex: 0 0 100%;
+    margin-bottom: 0;
+  }
+
+  .facts { grid-template-columns: 1fr; gap: 0.1em 0; }
+
+  .facts dd { margin-bottom: 0.5em; }
+
+  .pager { flex-direction: column; }
+
+  .pager-link { max-width: none; }
+
+  .pager-next { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publication-with-teaser,
+  .publication-teaser,
+  .teaser-container { transition: none; }
+
+  .publication-with-teaser:hover .teaser-container { transform: none; }
+}
