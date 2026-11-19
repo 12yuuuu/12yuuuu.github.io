@@ -15,12 +15,10 @@
 
 /* ============================================================
    DESIGN TOKENS
-   The layout, sizes and spacing follow jayinnn.dev (the Hugo
-   "researcher" theme with its custom stylesheet) measure for measure.
-   Only the colours and the fonts are this site's own: University of
-   Toronto blue on white, silver-white for plates and bands, and a
-   deep navy in dark mode. Each colour is written once as
-   light-dark(light, dark).
+   A plain academic home page: one 900px column, 12pt text. The
+   colours are University of Toronto blue on white, silver-white for
+   plates and bands, and a deep navy in dark mode. Each colour is
+   written once as light-dark(light, dark).
    ============================================================ */
 :root {
   color-scheme: light dark;
@@ -52,15 +50,15 @@
 
 /* ============================================================
    BASE
-   The parts of Bootstrap 4's reboot that the reference layout relies
-   on, written out by hand so no framework is needed.
+   A small reset and the base type, written out by hand so no CSS
+   framework is needed.
    ============================================================ */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
 html {
-  font-size: 12pt;              /* the reference sets every element to 12pt */
+  font-size: 12pt;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -141,7 +139,7 @@ hr {
   border-top: 1px solid var(--color-rule);
 }
 
-small { font-size: 1rem; }       /* the reference keeps small text at 12pt too */
+small { font-size: 1rem; }
 
 code {
   padding: 0 4px;
@@ -218,7 +216,7 @@ sup { top: -0.5em; }
 
 /* ============================================================
    CONTAINER
-   One 900px column, as on the reference.
+   One 900px column.
    ============================================================ */
 .container {
   width: 100%;
@@ -576,8 +574,8 @@ sup { top: -0.5em; }
 
 /* ============================================================
    LIGHT / DARK BUTTON
-   The reference has no header bar, so the button sits on its own in
-   the top-right corner. Hidden until js/main.js runs.
+   There is no header bar, so the button sits on its own in the
+   top-right corner. Hidden until js/main.js runs.
    ============================================================ */
 .theme-toggle {
   position: fixed;
@@ -784,7 +782,7 @@ sup { top: -0.5em; }
 }
 
 /* ============================================================
-   RESPONSIVE (the reference's 768px breakpoint)
+   RESPONSIVE (768px breakpoint)
    ============================================================ */
 @media (max-width: 768px) {
   .large-name { font-size: 1.6em; }

@@ -3,15 +3,14 @@
 ## What this project is
 
 A personal site for hardware roles, built with Hugo (since 18 November
-2026, the same framework and deployment as jayinnn.dev, which the owner
-chose as the structural reference). It must stay readable to someone who is
-learning front-end development. Optimise for clarity, not cleverness.
+2026) and published by GitHub Actions to the gh-pages branch. It must stay
+readable to someone who is learning front-end development. Optimise for
+clarity, not cleverness.
 
 ## Hard constraints
 
 * Hugo with plain HTML templates, plain CSS and vanilla JavaScript. No
-  Hugo theme, no npm, no CSS framework (the reference's Bootstrap rules
-  are written out by hand), no JavaScript framework.
+  Hugo theme, no npm, no CSS framework, no JavaScript framework.
 * Do not add a Hugo module, pipe or asset step for anything a static file
   can do. The CSS and JS are served as they are from `static/`.
 * Content is data: papers, projects and contributions live in `data/*.yaml`
@@ -37,9 +36,8 @@ learning front-end development. Optimise for clarity, not cleverness.
 
 ## Visual direction
 
-The layout copies jayinnn.dev measure for measure (the Hugo "researcher"
-theme plus its custom stylesheet, rewritten by hand in `static/css/style.css`
-without Bootstrap): one 900px column; a header with the name "Ana Liu"
+The layout is a plain academic home page, written by hand in
+`static/css/style.css` without a framework: one 900px column; a header with the name "Ana Liu"
 (2.5em), one role line, the email and a "GitHub / LinkedIn" link row on
 the left and a 180px round portrait on the right; `h2` headings at 1.6rem
 with a thin underline; project and open-source rows
@@ -69,7 +67,7 @@ every page.
 
 Type: Absans (Collletttivo, SIL Open Font License, self-hosted) for the
 name, headings and entry titles; the operating system's interface font for
-everything else, at 12pt like the reference. No other web fonts.
+everything else, at 12pt. No other web fonts.
 
 Figures are the owner's own: images from her papers, reports and slides in
 `static/assets/projects/`. Never reuse figures from course handouts, other
@@ -78,7 +76,7 @@ entry without one simply has no thumbnail, and never a drawn placeholder.
 
 ## Animation policy
 
-Like the reference: none beyond hover states (row background, thumbnail
+None beyond hover states (row background, thumbnail
 lift) and the theme button's circular reveal. No reveal on scroll, no
 reading-progress line, no view transitions between pages.
 
