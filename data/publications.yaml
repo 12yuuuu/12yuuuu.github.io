@@ -5,6 +5,11 @@
 # Fields: title, authors (list; the owner's name is emboldened), meta
 # (status line), summary (one sentence).
 
+- title: "GenPose: Geometry-Based Uncalibrated Multi-View 3D Human Pose Estimation for Generalization Scenarios"
+  authors: [Bo-Han Chen, Kuan-Yu Liu, Chiao-Ya Chen, Tsung-Han Hsieh, Chia-Chi Tsai]
+  meta: "Under review, 2026 · second author"
+  summary: "Estimates camera poses from detected 2D poses instead of assuming calibration, reaching 85.90% AP25 on CMU Panoptic without known extrinsics."
+
 - title: "Beyond Accuracy and Calibration: Confidence Ranking Preservation and Routing Consistency for Fixed-budget Deferral in Quantized Edge AI"
   authors: [Kuan-Yu Liu, Chien-Yu Chen, Chiu-Han Hsiao]
   meta: "Under review, 2026 · first author"
@@ -21,7 +26,7 @@
   summary: "Task-aware fusion of four 2D, 2.5D and 3D U-Nets raises Dice to 0.9438 and cuts volume error from 101.6 to 69.7 mL; sending the riskiest 10% of predictions to clinicians cuts false negatives from 4.18% to 1.49%."
 
 - title: "A Motor-Cognitive Performance Assessment System Based on Markerless Pose Estimation and Real-Time Computer Vision"
-  authors: [Kuan-Hung Yeh, Lee-Xiang Lee, Chen-Kai Li, Shih-Lung Hsu, Kuan-Yu Liu, Chun-Hao Wang]
+  authors: [Kuan-Hung Yeh, Lee-Xiang Lee, Chen-Kai Li, Shih-Lung Hsu, Kuan-Yu Liu, Chun-Hao Wang, Chia-Chi Tsai]
   meta: "Under review, 2026 · co-author"
   summary: "One camera measures reaction and movement time from video, with 42 ms latency, and resolves event times to within 59 ms."
 
@@ -29,10 +34,3 @@
   authors: [Cheng-Ru Chou, Zong-Ze Cai, Ting-Hsuan Lin, Kuan-Yu Liu, Pei-Xuan Li, Shou-Po Tsai, Hsun-Ping Hsieh, I-Hsuan Yen]
   meta: "Demo paper, under review, 2026 · co-author"
   summary: "A map-centred next-POI route planner steered by natural-language requests, with a verifier that checks every sentence of the explanation against the evidence behind each stop and removes 99.96% of planted errors."
-
-# Kept out of the page for now, at the owner's request (6 November 2026).
-- title: "GenPose: Geometry-Based Uncalibrated Multi-View 3D Human Pose Estimation for Generalization Scenarios"
-  hidden: true
-  authors: [Bo-Han Chen, Kuan-Yu Liu, Chiao-Ya Chen, Tsung-Han Hsieh, Chia-Chi Tsai]
-  meta: "Under review, 2026 · second author"
-  summary: "Estimates camera poses from detected 2D poses instead of assuming calibration, reaching 85.90% AP25 on CMU Panoptic without known extrinsics."

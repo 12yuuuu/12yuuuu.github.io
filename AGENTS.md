@@ -95,15 +95,16 @@ Rules from the owner's experience bank:
   "silicon" or "measured" for pre-silicon results; the CIM chip is "chip
   design".
 * Papers under review show `Under review` with no venue name and no PDF,
-  preprint or code link. The about text says "Ana Liu (Kuan-Yu Liu on my
+  preprint or code link. GenPose is shown (the owner added it back on 18
+  November 2026) with no venue, like the others. The about text says "Ana Liu (Kuan-Yu Liu on my
   papers)" so the author name can be matched; the owner's title is
   "MEng Student @ University of Toronto ECE" only. She takes part in a
   research project at LCRAIN (York University) but asked that it not
   appear as a title, role or project on the site, and the ECE1388 team
   chip is not listed either, nor the ECE1388 SRAM decoder and CMOS
   inverter projects; do not write "TSMC 65 nm" anywhere. Never write "accepted" until the owner has the
-  notification. GenPose is kept hidden (`hidden: true`) at the owner's
-  request; its old 95.83 AP25 figure must never return.
+  notification. GenPose's old 95.83 AP25 figure must never return; the
+  paper says 85.90.
 * Open source lists only merged pull requests, with the merge date; the owner does not want open, draft or
   in-progress work on the site. Check the PR page itself on github.com
   before adding one (the REST API answered stale data for axi #455 on

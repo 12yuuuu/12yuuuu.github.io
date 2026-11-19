@@ -45,7 +45,7 @@
     <p>A Verilog accelerator for Local Binary Pattern feature extraction, with SRAM access reduced by sequential register accumulation: DC synthesis on 16 nm at 500 MHz (0.34 ns slack, 9,791 µm²), VCS gate-level simulation passed, 82.4% Superlint coverage. A single-cycle 32-bit RISC-V CPU with a custom ALU, branch logic and load filter, verified in ModelSim.</p>
 
 - title: "LogicMin: Boolean Logic Minimization and Verification"
-  meta: "C++17 · exact Quine–McCluskey with branch-and-bound covering"
+  meta: "C++17 · exact Quine–McCluskey with branch-and-bound covering · NCKU · Spring 2023"
   links:
     - { label: code, url: "https://github.com/12yuuuu/logicmin-cpp" }
   figure:
@@ -55,7 +55,7 @@
     <p>An exact two-level minimizer for single-output functions with don’t-cares: Quine–McCluskey prime implicants, then an exact branch-and-bound cover. Every output is re-checked against the specification and minimality is cross-checked against a brute-force reference; 31 tests (about 103,000 checks) run in CI on Linux and macOS. Rebuilt from a NCKU logic-design assignment.</p>
 
 - title: "Big Two Card Game"
-  meta: "C++ / Qt 5 · NCKU"
+  meta: "C++ / Qt 5 · NCKU · Spring 2023"
   links:
     - { label: code, url: "https://github.com/12yuuuu/big-two-cpp" }
   figure:
